@@ -6,7 +6,9 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "lint":"eslint",
+    "fix":"eslint --fix"
   },
   "dependencies": {
     "@nuxt/content": "^1.14.0",
