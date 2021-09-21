@@ -67,6 +67,14 @@ export default {
     base64: true,
   },
 
+  /*
+  fontawesome: {
+    icons: {
+      solid: true,
+      brands: true,
+    },
+  },*/
+
   proxy: {
     '/api': 'http://localhost:3434',
   },

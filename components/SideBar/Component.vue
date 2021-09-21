@@ -13,6 +13,7 @@
       lg:translate-x-0 lg:static lg:inset-0
       -translate-x-full
       ease-in
+      shadow-lg
     "
   >
     <SideBarTop />

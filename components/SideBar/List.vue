@@ -118,10 +118,47 @@
           ></SideBarNotification>
         </a>
       </li>
-      <SideBarHead :title="'Settings'"></SideBarHead>
+      <SideBarHead :title="'Content'" v-if="this.$auth.loggedIn"></SideBarHead>
       <li v-if="this.$auth.loggedIn">
         <a
-          href="#"
+          href="/upload"
+          class="
+            relative
+            flex flex-row
+            items-center
+            h-11
+            focus:outline-none
+            hover:bg-gray-50
+            text-gray-600
+            hover:text-gray-800
+            border-l-4 border-transparent
+            hover:border-indigo-500
+            pr-6
+          "
+        >
+          <span class="inline-flex justify-center items-center ml-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+              />
+            </svg>
+          </span>
+          <span class="ml-2 text-sm tracking-wide truncate">Upload</span>
+        </a>
+      </li>
+      <SideBarHead :title="'User'"></SideBarHead>
+      <li v-if="this.$auth.loggedIn">
+        <a
+          href="/profile"
           class="
             relative
             flex flex-row
@@ -157,7 +194,7 @@
       </li>
       <li v-if="this.$auth.loggedIn">
         <a
-          href="#"
+          href="/settings"
           class="
             relative
             flex flex-row
@@ -268,9 +305,7 @@
               ></path>
             </svg>
           </span>
-          <span class="ml-2 text-sm tracking-wide truncate"
-            >Login</span
-          >
+          <span class="ml-2 text-sm tracking-wide truncate">Login</span>
         </a>
       </li>
     </ul>

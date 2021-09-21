@@ -7,8 +7,16 @@
       justify-center
       h-14
       border-b
+      text-4xl
+      font-bold
+      text-transparent
+      bg-clip-text
+      bg-gradient-to-r
+      from-blue-500
+      to-pink-700
+      content-center
     "
   >
-    <div>Piston Video</div>
+    <p class="text-center">Piston Video</p>
   </div>
 </template>
