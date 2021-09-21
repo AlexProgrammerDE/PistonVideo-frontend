@@ -1,32 +1,36 @@
 <template>
-  <video-player
-    class="video-player-box"
-    ref="videoPlayer"
-    :options="playerOptions"
-    :playsinline="true"
-    customEventName="customstatechangedeventname"
-    @play="onPlayerPlay($event)"
-    @pause="onPlayerPause($event)"
-    @ended="onPlayerEnded($event)"
-    @waiting="onPlayerWaiting($event)"
-    @playing="onPlayerPlaying($event)"
-    @loadeddata="onPlayerLoadeddata($event)"
-    @timeupdate="onPlayerTimeupdate($event)"
-    @canplay="onPlayerCanplay($event)"
-    @canplaythrough="onPlayerCanplaythrough($event)"
-    @statechanged="playerStateChanged($event)"
-    @ready="playerReadied"
-  >
-  </video-player>
+  <div class="flex h-screen bg-gray-50 text-gray-800">
+    <SideBarComponent/>
+    <section class="container">
+      <div
+        class="video-player-box"
+        :playsinline="playsinline"
+        @play="onPlayerPlay($event)"
+        @pause="onPlayerPause($event)"
+        @ended="onPlayerEnded($event)"
+        @loadeddata="onPlayerLoadeddata($event)"
+        @waiting="onPlayerWaiting($event)"
+        @playing="onPlayerPlaying($event)"
+        @timeupdate="onPlayerTimeupdate($event)"
+        @canplay="onPlayerCanplay($event)"
+        @canplaythrough="onPlayerCanplaythrough($event)"
+        @ready="playerReadied"
+        @statechanged="playerStateChanged($event)"
+        v-video-player:myVideoPlayer="playerOptions"
+      ></div>
+    </section>
+  </div>
 </template>
 
 <script>
 export default {
-  auth: false,
   data() {
     return {
+      // component options
+      playsinline: true,
+
+      // videojs options
       playerOptions: {
-        // videojs options
         muted: true,
         language: 'en',
         playbackRates: [0.7, 1.0, 1.5, 2.0],
@@ -36,17 +40,12 @@ export default {
             src: 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm',
           },
         ],
-        poster: '/static/images/author.jpg',
+        // poster: "/static/images/author.jpg",
       },
     };
   },
   mounted() {
-    console.log('this is current player instance object', this.player);
-  },
-  computed: {
-    player() {
-      return this.$refs.videoPlayer.player;
-    },
+    console.log('this is current player instance object', this.myVideoPlayer);
   },
   methods: {
     // listen event
@@ -56,18 +55,34 @@ export default {
     onPlayerPause(player) {
       // console.log('player pause!', player)
     },
-    // ...player event
-
+    onPlayerEnded(player) {
+      // console.log('player ended!', player)
+    },
+    onPlayerLoadeddata(player) {
+      // console.log('player Loadeddata!', player)
+    },
+    onPlayerWaiting(player) {
+      // console.log('player Waiting!', player)
+    },
+    onPlayerPlaying(player) {
+      // console.log('player Playing!', player)
+    },
+    onPlayerTimeupdate(player) {
+      // console.log('player Timeupdate!', player.currentTime())
+    },
+    onPlayerCanplay(player) {
+      // console.log('player Canplay!', player)
+    },
+    onPlayerCanplaythrough(player) {
+      // console.log('player Canplaythrough!', player)
+    },
     // or listen state event
     playerStateChanged(playerCurrentState) {
-      // console.log('player current update state', playerCurrentState)
+      console.log('player current update state', playerCurrentState);
     },
-
     // player is ready
     playerReadied(player) {
-      console.log('the player is readied', player);
-      // you can use it to do something...
-      // player.[methods]
+      console.log('example 01: the player is readied', player);
     },
   },
 };

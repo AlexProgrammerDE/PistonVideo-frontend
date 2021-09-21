@@ -3,7 +3,7 @@ const secrets = require('./secrets.json');
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'pistonvideo',
+    title: 'PistonVideo',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -14,10 +14,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['video.js/dist/video-js.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~plugins/nuxt-video-player-plugin.js', ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -45,7 +45,9 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true,
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -65,10 +67,14 @@ export default {
     base64: true,
   },
 
+  proxy: {
+    '/api': 'http://localhost:3434',
+  },
+
   auth: {
     redirect: {
       login: '/login',
-      logout: '/',
+      home: '/',
     },
     strategies: {
       local: {
@@ -80,7 +86,7 @@ export default {
         },
         user: {
           property: 'user',
-          // autoFetch: true
+          autoFetch: true,
         },
         endpoints: {
           login: { url: '/api/auth/login', method: 'post' },

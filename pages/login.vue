@@ -330,7 +330,8 @@ export default {
     async userLogin() {
       try {
         let response = await this.$auth.loginWith('local', {
-          data: this.login,
+          email: this.login.email,
+          password: this.login.password,
         });
         console.log(response);
       } catch (err) {

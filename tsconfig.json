@@ -22,7 +22,7 @@
       "@types/node",
       "@nuxtjs/auth-next",
       "@types/nuxtjs__auth",
-      "@nuxtjs/auth",
+      "@nuxtjs/auth"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
