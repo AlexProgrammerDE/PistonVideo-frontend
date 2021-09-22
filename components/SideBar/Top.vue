@@ -17,6 +17,6 @@
       content-center
     "
   >
-    <p class="text-center">Piston Video</p>
+    <div>Piston Video</div>
   </div>
 </template>
