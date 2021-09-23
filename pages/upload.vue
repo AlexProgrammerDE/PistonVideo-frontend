@@ -155,7 +155,12 @@ export default {
               'Content-Type': 'multipart/form-data',
             },
           });
-          console.log(resp.data);
+          this.$router.push({
+            path: '/watch',
+            query: {
+              id: resp.data.id,
+            },
+          });
         } catch (err) {
           // Handle Error Here
           console.error(err);

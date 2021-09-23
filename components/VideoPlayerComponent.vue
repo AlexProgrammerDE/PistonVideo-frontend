@@ -11,7 +11,7 @@ export default {
     return { ready: false, playerOptions: undefined };
   },
   async fetch() {
-    var response = await this.$axios.get('/api/videodata', { params: { videoId: this.videoId } });
+    var response = await this.$axios.get('/api/videodata', { params: { id: this.videoId } });
 
     this.playerOptions = {
       muted: true,
