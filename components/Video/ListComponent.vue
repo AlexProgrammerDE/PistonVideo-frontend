@@ -12,17 +12,11 @@
 export default {
   data() {
     return {
-      videos: [
-        {
-          title: 'Cool Video',
-          description: 'owo description',
-          image:
-            'https://i.pinimg.com/564x/25/b0/6e/25b06e78d3e6389e91e39a16f3eb36f4.jpg',
-          url: 'https://www.pinterest.de/pin/651544271081475834/',
-          tags: ['meow', 'nyan', 'cat'],
-        },
-      ],
+      videos: [],
     };
   },
+  async fetch() {
+    this.videos = await (await this.$axios.get('/api/suggestions')).data;
+  }
 };
 </script>

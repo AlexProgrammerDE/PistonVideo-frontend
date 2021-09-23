@@ -11,17 +11,24 @@
     "fix": "eslint --fix"
   },
   "dependencies": {
+    "@fortawesome/vue-fontawesome": "^2.0.2",
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/auth-next": "^5.0.0-1624817847.21691f1",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/color-mode": "^2.1.1",
     "@nuxtjs/pwa": "^3.3.5",
+    "@tailwindcss/typography": "^0.4.1",
     "@types/nuxtjs__auth": "^4.8.8",
     "core-js": "^3.18.0",
-    "nuxt": "^2.15.3",
+    "nightwind": "^1.1.12",
+    "nuxt": "^2.13.3",
     "nuxt-helmet": "^2.0.1",
+    "vue": "^2.6.14",
+    "vue-server-renderer": "^2.6.14",
+    "vue-template-compiler": "^2.6.14",
     "vue-twemoji": "^1.0.1",
-    "vue-video-player": "^5.0.2"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
@@ -36,6 +43,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "postcss": "^8.3.5",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "video.js": "^7.15.4"
   }
 }

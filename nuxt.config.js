@@ -17,7 +17,7 @@ export default {
   css: ['video.js/dist/video-js.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~plugins/nuxt-video-player-plugin.js', ssr: false }],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -30,6 +30,7 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     '@nuxtjs/fontawesome',
+    '@nuxtjs/color-mode',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -67,16 +68,25 @@ export default {
     base64: true,
   },
 
-  /*
   fontawesome: {
     icons: {
       solid: true,
       brands: true,
     },
-  },*/
+  },
+
+  tailwindcss: {
+    // add '~tailwind.config` alias
+    exposeConfig: true,
+  },
+
+  colorMode: {
+    classSuffix: '',
+  },
 
   proxy: {
     '/api': 'http://localhost:3434',
+    '/static': 'http://localhost:3434',
   },
 
   auth: {
@@ -108,8 +118,7 @@ export default {
       },
       facebook: {
         endpoints: {
-          userInfo:
-            'https://graph.facebook.com/v6.0/me?fields=id,name,picture{url}',
+          userInfo: 'https://graph.facebook.com/v6.0/me?fields=id,name,picture{url}',
         },
         clientId: secrets.facebook.clientId,
         scope: ['public_profile', 'email'],

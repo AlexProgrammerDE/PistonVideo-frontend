@@ -14,33 +14,10 @@
       -translate-x-full
       ease-in
       shadow-lg
+      bg-gray-100
     "
   >
     <SideBarTop />
-    <SideBarList
-      v-for="menu in menus"
-      :key="menu.id"
-      :title="menu.title"
-      :entries="menu.entries"
-    ></SideBarList>
+    <SideBarList/>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      menus: [
-        {
-          title: 'Menu',
-          entries: [
-            {
-              title: 'Title',
-            },
-          ],
-        },
-      ],
-    };
-  },
-};
-</script>

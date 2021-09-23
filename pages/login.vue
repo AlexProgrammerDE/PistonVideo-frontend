@@ -2,17 +2,18 @@
   <div
     class="
       bg-white
-      sm:bg-gray-200
+      sm:bg-gray-50
       min-h-screen
       w-screen
       flex flex-col
       justify-center
       items-center
+      text-gray-800
     "
   >
     <div
       class="
-        bg-white
+        bg-gray-100
         shadow-none
         sm:shadow-lg
         px-8
@@ -159,7 +160,7 @@
             </button>
           </div>
           <div class="my-2 flex flex-row justify-center">
-            <span class="absolute bg-white px-4">or</span>
+            <span class="absolute px-4">or</span>
             <div class="w-full bg-gray-200 mt-3" style="height: 1px"></div>
           </div>
           <div class="w-full flex flex-col gap-2">
@@ -176,6 +177,7 @@
                 hover:bg-red-600
                 duration-100
                 ease-in-out
+                nightwind-prevent
               "
               @click="$auth.loginWith('google')"
             >
@@ -212,6 +214,7 @@
                 hover:bg-blue-700
                 duration-100
                 ease-in-out
+                nightwind-prevent
               "
               @click="$auth.loginWith('facebook')"
             >
@@ -244,6 +247,7 @@
                 hover:bg-gray-800
                 duration-100
                 ease-in-out
+                nightwind-prevent
               "
               @click="$auth.loginWith('github')"
             >
@@ -280,6 +284,7 @@
                 hover:bg-indigo-600
                 duration-100
                 ease-in-out
+                nightwind-prevent
               "
               @click="$auth.loginWith('discord')"
             >

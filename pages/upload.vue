@@ -12,7 +12,7 @@
           items-center
           px-4
           py-6
-          bg-white
+          bg-gray-100
           rounded-md
           shadow-md
           tracking-wide
@@ -44,7 +44,7 @@
           items-center
           px-4
           py-6
-          bg-white
+          bg-gray-100
           rounded-md
           shadow-md
           tracking-wide

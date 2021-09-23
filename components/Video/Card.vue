@@ -1,9 +1,9 @@
 <template>
   <div class="p-5">
-    <div class="w-44 h-auto rounded overflow-hidden shadow-lg">
-      <img v-bind:src="video.image" alt="Thumbnail" />
+    <div class="w-44 h-auto rounded overflow-hidden shadow-lg bg-gray-100">
+      <img v-bind:src="video.thumbnailUrl" alt="Thumbnail" />
       <div class="px-6 py-3">
-        <a v-bind:href="video.url">
+        <a v-bind:href="'/watch?id=' + video.id">
           <div class="font-bold text-base mb-2">{{ video.title }}</div>
         </a>
         <p class="text-gray-700 text-sm">
