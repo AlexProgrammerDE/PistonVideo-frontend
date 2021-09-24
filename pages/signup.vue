@@ -98,19 +98,19 @@ export default {
         var email = this.login.email;
         var password = this.login.password;
 
-        let response = await this.$axios.get('/api/user/register', {
-          params: {
-            username: this.login.username,
-            email: email,
-            password: password,
-          },
+        let response = await this.$axios.post('/api/user/register', {
+          username: this.login.username,
+          email: email,
+          password: password,
         });
 
         if (response.data.success) {
           this.$auth
             .loginWith('local', {
-              email: this.login.email,
-              password: this.login.password,
+              data: {
+                email: this.login.email,
+                password: this.login.password,
+              },
             })
             .then(() => {
               this.$router.push('/');

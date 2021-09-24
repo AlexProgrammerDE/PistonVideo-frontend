@@ -150,8 +150,7 @@ export default {
     async userLogin() {
       try {
         await this.$auth.loginWith('local', {
-          email: this.login.email,
-          password: this.login.password,
+          data: this.login,
         });
 
         if (this.$auth.loggedIn) {
