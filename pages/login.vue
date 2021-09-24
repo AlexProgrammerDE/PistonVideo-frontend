@@ -115,7 +115,7 @@
             </button>
           </div>
           <div class="w-full flex flex-row justify-end">
-            <a href="#">Forgot password</a>
+            <a href="/forgotpassword">Forgot password</a>
           </div>
         </div>
       </form>

@@ -1,33 +1,29 @@
 <template>
   <div>
-    <VideoJS v-if="ready" :options="playerOptions"></VideoJS>
+    <VideoJS :options="playerOptions"></VideoJS>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['videoId'],
+  props: ['video'],
   data() {
-    return { ready: false, playerOptions: undefined };
-  },
-  async fetch() {
-    var response = await this.$axios.get('/api/videodata', { params: { id: this.videoId } });
-
-    this.playerOptions = {
-      muted: true,
-      language: 'en',
-      autoplay: true,
-      controls: true,
-      playbackRates: [0.7, 1.0, 1.5, 2.0],
-      sources: [
-        {
-          type: 'video/mp4',
-          src: response.data.videoUrl,
-        },
-      ],
-      poster: response.data.thumbnailUrl,
+    return {
+      playerOptions: {
+        muted: true,
+        language: 'en',
+        autoplay: true,
+        controls: true,
+        playbackRates: [0.7, 1.0, 1.5, 2.0],
+        sources: [
+          {
+            type: 'video/mp4',
+            src: this.video.videoUrl,
+          },
+        ],
+        poster: this.video.thumbnailUrl,
+      },
     };
-    this.ready = true;
   },
 };
 </script>

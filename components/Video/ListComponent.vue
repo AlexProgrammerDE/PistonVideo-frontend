@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 flex flex-col overflow-hidden">
+  <div class="flex-1 flex flex-row overflow-hidden">
     <VideoCard
       v-for="video in videos"
       :key="video.title"
