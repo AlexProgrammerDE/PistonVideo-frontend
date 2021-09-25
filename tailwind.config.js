@@ -6,6 +6,9 @@ module.exports = {
     nightwind: {
       colorClasses: ['gradient', 'ring', 'ring-offset', 'divide', 'placeholder'],
     },
+    gridTemplateColumns: {
+      'fill-40': 'repeat(auto-fill, 10rem)',
+    },
   },
   variants: {
     nightwind: ['focus'],

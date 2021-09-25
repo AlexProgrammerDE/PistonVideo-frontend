@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <VideoJS :options="playerOptions"></VideoJS>
-  </div>
+  <VideoJS :options="playerOptions"></VideoJS>
 </template>
 
 <script>
@@ -10,7 +8,9 @@ export default {
   data() {
     return {
       playerOptions: {
-        muted: true,
+        //fill: true,
+        responsive: true,
+        muted: false,
         language: 'en',
         autoplay: true,
         controls: true,

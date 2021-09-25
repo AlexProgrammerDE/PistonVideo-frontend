@@ -1,13 +1,15 @@
 const secrets = require('./secrets.json');
 
 export default {
+  target: 'server',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'PistonVideo',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Awesome open source video upload platform!' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -89,6 +91,11 @@ export default {
     '/static': 'http://localhost:3434',
   },
 
+  loading: {
+    color: 'blue',
+    height: '5px',
+  },
+
   auth: {
     redirect: {
       login: '/login',
@@ -99,8 +106,8 @@ export default {
         token: {
           property: 'token',
           global: true,
-          // required: true,
-          // type: 'Bearer'
+          required: true,
+          type: '',
         },
         user: {
           property: 'user',
