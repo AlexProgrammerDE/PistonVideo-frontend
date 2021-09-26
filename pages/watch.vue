@@ -11,7 +11,7 @@
         </div>
         <div class="my-3 flex flex-row w-full bg-gray-300 w-24 items-center p-6 space-x-6 rounded-xl shadow-lg">
           <img v-bind:src="video.uploader.avatarUrl" class="rounded-full h-10 w-10 items-center justify-center" />
-          <a v-bind:href="'/user?id=' + video.uploader.userid" class="inline-block text-gray-700 text-lg py-1">{{ video.uploader.username }}</a>
+          <a v-bind:href="'/user?id=' + video.uploader.id" class="inline-block text-gray-700 text-lg py-1">{{ video.uploader.username }}</a>
         </div>
       </div>
     </div>

@@ -72,6 +72,10 @@
 </template>
 
 <script>
+import crypto from 'crypto';
+
+var hash = crypto.createHash('sha256');
+
 export default {
   auth: false,
   data() {
@@ -96,7 +100,7 @@ export default {
 
       try {
         var email = this.login.email;
-        var password = this.login.password;
+        var password = hash.update(this.login.password).digest('hex');
 
         let response = await this.$axios.post('/api/user/register', {
           username: this.login.username,
@@ -108,8 +112,8 @@ export default {
           this.$auth
             .loginWith('local', {
               data: {
-                email: this.login.email,
-                password: this.login.password,
+                email: email,
+                password: password,
               },
             })
             .then(() => {

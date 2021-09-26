@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen bg-gray-50 text-gray-800">
+  <div class="flex min-h-screen bg-gray-50 text-gray-800">
     <SideBarComponent />
     <form class="relative p-5" autocomplete="off" @submit.prevent="submit">
       <h1 class="text-3xl">Upload Video</h1>

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^2.0.2",
+    "@gerhobbelt/markdown-it-emoji": "^2.0.0-12",
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/auth-next": "^5.0.0-1624817847.21691f1",
@@ -21,7 +22,10 @@
     "@tailwindcss/typography": "^0.4.1",
     "@types/nuxtjs__auth": "^4.8.8",
     "core-js": "^3.18.0",
+    "crypto": "^1.0.1",
     "markdown-it": "^12.2.0",
+    "markdown-it-emoji": "^2.0.0",
+    "markdown-it-underline": "^1.0.1",
     "nightwind": "^1.1.12",
     "nuxt": "^2.13.3",
     "nuxt-helmet": "^2.0.1",

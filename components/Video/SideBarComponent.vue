@@ -16,7 +16,9 @@ export default {
     };
   },
   async fetch() {
-    this.videos = await (await this.$axios.get('/api/suggestions')).data;
+    var response = await this.$axios.get('/api/suggestions');
+
+    this.videos = response.data;
   }
 };
 </script>

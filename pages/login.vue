@@ -136,6 +136,10 @@
 </template>
 
 <script>
+import crypto from 'crypto';
+
+var hash = crypto.createHash('sha256');
+
 export default {
   data() {
     return {
@@ -150,7 +154,7 @@ export default {
     async userLogin() {
       try {
         await this.$auth.loginWith('local', {
-          data: this.login,
+          data: { email: this.login.email, password: hash.update(this.login.password).digest('hex') },
         });
 
         if (this.$auth.loggedIn) {

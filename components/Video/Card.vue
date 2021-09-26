@@ -4,7 +4,9 @@
       <img v-bind:src="video.thumbnailUrl" alt="Thumbnail" />
       <div class="px-6 py-3">
         <div class="flex justify-center md:justify-end -mt-12">
-          <img class="w-14 h-14 object-cover rounded-full border-2 border-indigo-500" v-bind:src="video.uploader.avatarUrl" />
+          <a v-bind:href="'/user?id=' + video.uploader.id">
+            <img class="w-14 h-14 object-cover rounded-full border-2 border-indigo-500" v-bind:src="video.uploader.avatarUrl" />
+          </a>
         </div>
         <a v-bind:href="'/watch?id=' + video.id">
           <div class="font-bold text-base mb-2">{{ video.title }}</div>
@@ -21,10 +23,12 @@
 <script>
 import MarkdownIt from 'markdown-it';
 
+var renderer = new MarkdownIt();
+
 export default {
   props: ['video'],
   data() {
-    return { description: new MarkdownIt().render(this.video.description) };
+    return { description: renderer.render(this.video.description) };
   },
 };
 </script>
