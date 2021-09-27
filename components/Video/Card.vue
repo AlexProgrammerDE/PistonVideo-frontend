@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5">
+  <div class="p-2">
     <div class="w-64 h-auto rounded overflow-hidden shadow-lg bg-gray-100">
       <img v-bind:src="video.thumbnailUrl" alt="Thumbnail" />
       <div class="px-6 py-3">

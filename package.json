@@ -2,6 +2,7 @@
   "name": "pistonvideo",
   "version": "1.0.0",
   "private": true,
+  "description": "Awesome open source video upload platform!",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

@@ -191,7 +191,7 @@ export default {
       bodyFormData.forEach(() => i++);
       if (i <= 0) return;
 
-      console.log(this.bio)
+      console.log(this.bio);
 
       this.uploading = true;
       try {
@@ -213,27 +213,17 @@ export default {
       this.uploading = false;
     },
     async updateInfo() {
+      console.log('a')
       try {
-        var email = this.login.email;
-        var password = hash.update(this.login.password).digest('hex');
-
-        let response = await this.$axios.post('/api/user/register', {
-          username: this.login.username,
-          email: email,
-          password: password,
+        let response = await this.$axios.post('/api/user/updateinfo', {
+          username: this.info.username,
+          email: this.info.email,
+          oldPassword: this.info.password_old ? hash.update(this.info.password_old).digest('hex') : undefined,
+          newPassword: this.info.password_old ? hash.update(this.info.password_new).digest('hex') : undefined,
         });
 
         if (response.data.success) {
-          this.$auth
-            .loginWith('local', {
-              data: {
-                email: email,
-                password: password,
-              },
-            })
-            .then(() => {
-              this.$router.push('/');
-            });
+          this.$router.push('/');
         } else {
           this.message = response.data.errorMessage;
           this.invalid = true;

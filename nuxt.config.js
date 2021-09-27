@@ -6,12 +6,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'PistonVideo',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Awesome open source video upload platform!' },
-      { name: 'format-detection', content: 'telephone=no' },
-    ],
+    meta: [{ name: 'format-detection', content: 'telephone=no' }],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
@@ -54,6 +49,12 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    meta: {
+      ogHost: 'https://pistonvideo.com/',
+      twitterCreator: '@AlexProgrammer3',
+      theme_color: '#1F2937',
+      description: 'Awesome open source video upload platform!',
+    },
     manifest: {
       lang: 'en',
     },
