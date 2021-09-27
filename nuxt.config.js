@@ -49,11 +49,15 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    icon: {
+      source: 'static/icon.png',
+    },
     meta: {
-      ogHost: 'https://pistonvideo.com/',
+      ogHost: 'https://pistonvideo.com',
       twitterCreator: '@AlexProgrammer3',
       theme_color: '#1F2937',
       description: 'Awesome open source video upload platform!',
+      author: undefined,
     },
     manifest: {
       lang: 'en',
