@@ -55,9 +55,12 @@ export default {
     meta: {
       ogHost: 'https://pistonvideo.com',
       twitterCreator: '@AlexProgrammer3',
-      theme_color: '#1F2937',
+      theme_color: '#FF9900',
       description: 'Awesome open source video upload platform!',
       author: undefined,
+      ogImage: '/icon.png',
+      ogSiteName: undefined,
+      ogTitle: 'PistonVideo',
     },
     manifest: {
       lang: 'en',
