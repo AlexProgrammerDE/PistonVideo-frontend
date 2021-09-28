@@ -1,7 +1,7 @@
 <template>
   <vue-plyr :options="plyrOptions" >
     <video controls crossorigin playsinline v-bind:data-poster="options.poster">
-      <source v-for="source in options.sources" :src="source.src" :type="source.type" />
+      <source v-for="source in options.sources" :key="source.src" :src="source.src" :type="source.type" />
     </video>
   </vue-plyr> 
 </template>
