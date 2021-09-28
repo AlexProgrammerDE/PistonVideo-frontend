@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-y-auto overflow-x-hidden flex-grow">
-    <ul class="flex flex-col py-4 space-y-1">
+    <ul class="flex flex-col py-2 space-y-1">
       <SideBarHead :title="'Menu'"></SideBarHead>
       <li>
         <a

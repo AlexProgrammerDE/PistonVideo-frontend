@@ -1,7 +1,7 @@
 <template>
   <div class="p-2">
     <div class="w-64 h-auto rounded overflow-hidden shadow-lg bg-gray-100">
-      <img v-bind:src="video.thumbnailUrl" alt="Thumbnail" />
+      <a v-bind:href="'/watch?id=' + video.id"><img v-bind:src="video.thumbnailUrl" alt="Thumbnail" /></a>
       <div class="px-6 py-3">
         <div class="flex justify-center md:justify-end -mt-12">
           <a v-bind:href="'/user?id=' + video.uploader.id">
