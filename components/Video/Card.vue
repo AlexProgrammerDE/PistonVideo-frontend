@@ -28,6 +28,7 @@ var renderer = new MarkdownIt();
 export default {
   props: ['video'],
   data() {
+    console.log(this.video)
     return { description: renderer.render(this.video.description) };
   },
 };

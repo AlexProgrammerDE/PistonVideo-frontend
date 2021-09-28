@@ -1,10 +1,8 @@
 <template>
-  <div class="flex flex-wrap gap-2 overflow-hidden">
-    <VideoCard
-      v-for="video in videos"
-      :key="video.title"
-      :video="video"
-    ></VideoCard>
+  <div v-if="rows" class="flex flex-wrap justify-between gap-2 overflow-hidden">
+    <div v-for="rowVideos in rows" :key="rowVideos">
+      <VideoCard v-for="video in rowVideos.toArray()" :key="video.title" :video="video" />
+    </div>
   </div>
 </template>
 
@@ -12,13 +10,30 @@
 export default {
   data() {
     return {
-      videos: [],
+      rows: undefined,
+      videos: undefined,
     };
   },
   async fetch() {
-    var response = await this.$axios.get('/api/suggestions');
+    var response = await this.$axios.get('/api/suggestions', { params: { amount: 50 } });
 
     this.videos = response.data;
-  }
+    var rows = [];
+
+    let rowIndex = 0;
+    for (var video in this.videos) {
+      if (rows[rowIndex] === undefined) rows[rowIndex] = [];
+
+      rows[rowIndex][rows[rowIndex].length] = this.videos[video];
+
+      rowIndex++;
+
+      if (rowIndex >= 7) {
+        rowIndex = 0;
+      }
+    }
+    
+    this.rows = rows;
+  },
 };
 </script>
