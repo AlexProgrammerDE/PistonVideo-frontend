@@ -1,7 +1,7 @@
 <template>
   <div v-if="rows" class="flex flex-wrap justify-between gap-2 overflow-hidden">
     <div v-for="rowVideos in rows" :key="rowVideos">
-      <VideoCard v-for="video in rowVideos.toArray()" :key="video.title" :video="video" />
+      <VideoCard v-for="video in rowVideos" :key="video.title" :video="video" />
     </div>
   </div>
 </template>
