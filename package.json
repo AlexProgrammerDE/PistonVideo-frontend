@@ -9,7 +9,8 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint",
-    "fix": "eslint --fix"
+    "fix": "eslint --fix",
+    "setup-plyr":"cd node_modules && rm -rf vue-plyr && git clone https://github.com/daun/vue-plyr.git --single-branch --branch update-plyr && cd vue-plyr && npm update --legacy-peer-deps && npm i && npm run build"
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^2.0.2",
@@ -30,7 +31,9 @@
     "nightwind": "^1.1.12",
     "nuxt": "^2.13.3",
     "nuxt-helmet": "^2.0.1",
+    "plyr": "^3.6.8",
     "vue": "^2.6.14",
+    "vue-plyr": "github:daun/vue-plyr#update-plyr",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
     "vue-twemoji": "^1.0.1",
@@ -49,7 +52,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "postcss": "^8.3.8",
-    "prettier": "^2.4.1",
-    "video.js": "^7.15.4"
+    "prettier": "^2.4.1"
   }
 }

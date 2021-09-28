@@ -1,5 +1,9 @@
 <template>
-  <VideoJS :options="playerOptions"></VideoJS>
+  <vue-plyr :options="plyrOptions" >
+    <video controls crossorigin playsinline v-bind:data-poster="options.poster">
+      <source v-for="source in options.sources" :src="source.src" :type="source.type" />
+    </video>
+  </vue-plyr> 
 </template>
 
 <script>
@@ -7,14 +11,10 @@ export default {
   props: ['video'],
   data() {
     return {
-      playerOptions: {
-        //fill: true,
-        responsive: true,
-        muted: false,
-        language: 'en',
-        autoplay: true,
-        controls: true,
-        playbackRates: [0.7, 1.0, 1.5, 2.0],
+      plyrOptions: {
+        ratio: '16:9',
+      },
+      options: {
         sources: [
           {
             type: 'video/mp4',
