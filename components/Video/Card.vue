@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import MarkdownIt from 'markdown-it';
 
 var renderer = new MarkdownIt();
@@ -28,7 +28,7 @@ var renderer = new MarkdownIt();
 export default {
   props: ['video'],
   data() {
-    var descSlice: string = this.video.description
+    var descSlice = this.video.description
     return { description: renderer.render(descSlice.length > 30 ? descSlice.substring(0, 30) : descSlice) };
   },
 };
