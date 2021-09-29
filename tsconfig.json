@@ -23,6 +23,7 @@
       "@types/nuxtjs__auth",
       "@nuxtjs/auth",
       "@nuxtjs/color-mode",
+      "@types/markdown-it",
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
