@@ -13,7 +13,7 @@
     "setup-plyr": "cd node_modules && rm -rf vue-plyr && git clone https://github.com/daun/vue-plyr.git --single-branch --branch update-plyr && cd vue-plyr && npm update --legacy-peer-deps && npm i && npm run build"
   },
   "dependencies": {
-    "@fortawesome/vue-fontawesome": "^2.0.2",
+    "@fortawesome/vue-fontawesome": "^2.0.6",
     "@gerhobbelt/markdown-it-emoji": "^2.0.0-12",
     "@nuxt/content": "^1.15.0",
     "@nuxtjs/auth": "^4.9.1",
