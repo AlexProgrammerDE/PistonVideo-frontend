@@ -50,7 +50,7 @@
     "@nuxtjs/tailwindcss": "^4.2.0",
     "@types/markdown-it": "^12.2.3",
     "babel-eslint": "^10.1.0",
-    "eslint": "^8.0.1",
+    "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "postcss": "^8.3.11",
