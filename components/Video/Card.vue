@@ -29,7 +29,7 @@ export default {
   props: ['video'],
   data() {
     var descSlice = this.video.description
-    return { description: renderer.render(descSlice.length > 30 ? descSlice.substring(0, 30) : descSlice) };
+    return { description: renderer.render(descSlice.length > 200 ? descSlice.substring(0, 200) : descSlice) };
   },
 };
 </script>

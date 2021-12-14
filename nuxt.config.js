@@ -92,6 +92,8 @@ export default {
 
   colorMode: {
     classSuffix: '',
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'dark', // fallback value if not system preference found
   },
 
   proxy: {
@@ -107,6 +109,7 @@ export default {
   auth: {
     redirect: {
       login: '/login',
+      callback: '/callback',
       home: '/',
     },
     strategies: {

@@ -1,41 +1,55 @@
 <template>
   <div class="bg-white sm:bg-gray-50 min-h-screen w-screen flex flex-col justify-center items-center text-gray-800">
-    <div class="bg-gray-100 shadow-none sm:shadow-lg px-8 sm:px-12 w-full xs:w-full sm:w-8/12 md:w-7/12 lg:w-7/12 xl:w-2/6 h-screen sm:h-auto py-8">
+    <div
+      class="bg-gray-100 shadow-none sm:shadow-lg px-8 sm:px-12 w-full xs:w-full sm:w-8/12 md:w-7/12 lg:w-7/12 xl:w-2/6 h-screen sm:h-auto py-8">
       <AuthHeader :title="'Login'" />
       <form @submit.prevent="userLogin">
-        <div v-if="invalid" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <div v-if="invalid" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+             role="alert">
           <strong class="font-bold">Invalid email or password!</strong>
           <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-            <svg @click="invalid = false" class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <title>Close</title>
-              <path
-                d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
-              />
-            </svg>
+            <button @click="invalid = false" class="fill-current h-6 w-6 text-red-500">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <title>Close</title>
+                <path
+                  d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                />
+              </svg>
+            </button>
           </span>
         </div>
         <div class="flex flex-col gap-4 px-0 py-4">
           <div>
             <label class="text-gray-700">Email address</label>
-            <svg xmlns="http://www.w3.org/2000/svg" class="font-medium text-2xl text-gray-600 absolute p-2.5 px-3 w-11" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="font-medium text-2xl text-gray-600 absolute p-2.5 px-3 w-11"
+                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
             </svg>
-            <input required class="py-2 pl-10 border border-gray-200 w-full bg-gray-200 text-gray-700 focus:border-gray-100" placeholder="Email address" type="email" v-model="login.email" />
+            <input required
+                   class="py-2 pl-10 border border-gray-200 w-full bg-gray-200 text-gray-700 focus:border-gray-100"
+                   placeholder="Email address" type="email" v-model="login.email" />
           </div>
           <div>
             <label class="text-gray-700">Password</label>
-            <svg xmlns="http://www.w3.org/2000/svg" class="font-medium text-2xl text-gray-600 absolute p-2.5 px-3 w-11" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="font-medium text-2xl text-gray-600 absolute p-2.5 px-3 w-11"
+                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            <input required class="py-2 pl-10 border border-gray-200 w-full bg-gray-200 text-gray-700 focus:border-gray-100" placeholder="Password" type="password" v-model="login.password" />
+            <input required
+                   class="py-2 pl-10 border border-gray-200 w-full bg-gray-200 text-gray-700 focus:border-gray-100"
+                   placeholder="Password" type="password" v-model="login.password" />
           </div>
           <div class="w-full flex flex-row gap-2">
             <button
               class="border border-indigo-500 hover:bg-indigo-500 hover:text-white duration-100 ease-in-out w-6/12 text-indigo-500 p-0 flex flex-row justify-center items-center gap-1"
               type="submit"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                   stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
               </svg>
               Login
             </button>
@@ -64,7 +78,8 @@
               class="bg-red-500 text-white w-full p-2 flex flex-row justify-center gap-2 items-center hover:bg-red-600 duration-100 ease-in-out nightwind-prevent"
               @click="$auth.loginWith('google')"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="w-5" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                   role="img" class="w-5" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                 <g fill="none">
                   <path
                     fill-rule="evenodd"
@@ -80,7 +95,8 @@
               class="bg-blue-600 text-white w-full p-2 flex flex-row justify-center gap-2 items-center hover:bg-blue-700 duration-100 ease-in-out nightwind-prevent"
               @click="$auth.loginWith('facebook')"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="w-5" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                   role="img" class="w-5" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024">
                 <path
                   d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-92.4 233.5h-63.9c-50.1 0-59.8 23.8-59.8 58.8v77.1h119.6l-15.6 120.7h-104V912H539.2V602.2H434.9V481.4h104.3v-89c0-103.3 63.1-159.6 155.3-159.6c44.2 0 82.1 3.3 93.2 4.8v107.9z"
                   fill="currentColor"
@@ -92,7 +108,8 @@
               class="bg-gray-700 text-white w-full p-2 flex flex-row justify-center gap-2 items-center hover:bg-gray-800 duration-100 ease-in-out nightwind-prevent"
               @click="$auth.loginWith('github')"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="w-5" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                   role="img" class="w-5" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                 <g fill="none">
                   <path
                     fill-rule="evenodd"
@@ -136,36 +153,36 @@
 </template>
 
 <script>
-import crypto from 'crypto';
+import crypto from "crypto";
 
-var hash = crypto.createHash('sha256');
+var hash = crypto.createHash("sha256");
 
 export default {
   data() {
     return {
       login: {
-        email: '',
-        password: '',
+        email: "",
+        password: ""
       },
-      invalid: false,
+      invalid: false
     };
   },
   methods: {
     async userLogin() {
       try {
-        await this.$auth.loginWith('local', {
-          data: { email: this.login.email, password: hash.update(this.login.password).digest('hex') },
+        await this.$auth.loginWith("local", {
+          data: { email: this.login.email, password: hash.update(this.login.password).digest("hex") }
         });
 
         if (this.$auth.loggedIn) {
-          this.$router.push('/');
+          this.$router.push("/");
         } else {
           this.invalid = true;
         }
       } catch (err) {
         console.log(err);
       }
-    },
-  },
+    }
+  }
 };
 </script>

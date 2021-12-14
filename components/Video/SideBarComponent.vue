@@ -12,11 +12,11 @@
 export default {
   data() {
     return {
-      videos: [],
+      videos: []
     };
   },
   async fetch() {
-    var response = await this.$axios.get('/api/suggestions');
+    const response = await this.$axios.get("/api/suggestions");
 
     this.videos = response.data;
   }

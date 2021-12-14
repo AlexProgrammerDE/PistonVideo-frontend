@@ -268,7 +268,7 @@
             </svg>
           </span>
           <span class="ml-2 text-sm tracking-wide truncate" @click="userLogout"
-            >Logout</span
+          >Logout</span
           >
         </a>
       </li>
@@ -323,7 +323,7 @@ export default {
       } catch (err) {
         console.log(err);
       }
-    },
-  },
+    }
+  }
 };
 </script>

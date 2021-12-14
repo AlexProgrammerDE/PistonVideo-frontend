@@ -11,17 +11,17 @@ export default {
   data() {
     return {
       rows: undefined,
-      videos: undefined,
+      videos: undefined
     };
   },
   async fetch() {
-    var response = await this.$axios.get('/api/suggestions', { params: { amount: 50 } });
+    const response = await this.$axios.get("/api/suggestions", { params: { amount: 50 } });
 
     this.videos = response.data;
-    var rows = [];
+    const rows = [];
 
     let rowIndex = 0;
-    for (var video in this.videos) {
+    for (const video in this.videos) {
       if (rows[rowIndex] === undefined) rows[rowIndex] = [];
 
       rows[rowIndex][rows[rowIndex].length] = this.videos[video];
@@ -32,8 +32,8 @@ export default {
         rowIndex = 0;
       }
     }
-    
+
     this.rows = rows;
-  },
+  }
 };
 </script>

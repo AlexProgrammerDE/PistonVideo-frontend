@@ -6,16 +6,16 @@
 
 <script>
 export default {
-  props: ['id'],
+  props: ["id"],
   data() {
     return {
-      videos: [],
+      videos: []
     };
   },
   async fetch() {
-    var response = await this.$axios.get('/api/uservideos', { params: { id: this.id } });
+    const response = await this.$axios.get("/api/uservideos", { params: { id: this.id } });
 
     this.videos = response.data;
-  },
+  }
 };
 </script>
