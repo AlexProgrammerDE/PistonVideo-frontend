@@ -13,7 +13,7 @@
     "setup-plyr": "cd node_modules && rm -rf vue-plyr && git clone https://github.com/daun/vue-plyr.git --single-branch --branch update-plyr && cd vue-plyr && npm update --legacy-peer-deps && npm i && npm run build"
   },
   "dependencies": {
-    "@fortawesome/vue-fontawesome": "^2.0.6",
+    "@fortawesome/vue-fontawesome": "2.0.6",
     "@gerhobbelt/markdown-it-emoji": "2.0.0-12",
     "@nuxt/content": "1.15.1",
     "@nuxtjs/auth-next": "5.0.0-1637745161.ea53f98",
@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.16.5",
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/free-brands-svg-icons": "5.15.4",
+    "@fortawesome/free-solid-svg-icons": "5.15.4",
     "@nuxt/bridge": "npm:@nuxt/bridge-edge@3.0.0-27324955.23397e6",
     "@nuxt/types": "2.15.8",
     "@nuxt/typescript-build": "2.1.0",
