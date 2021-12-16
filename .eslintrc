@@ -14,7 +14,8 @@
     "vue/component-name-in-template-casing": [
       "error",
       "PascalCase"
-    ]
+    ],
+    "vue/multi-word-component-names": 0
   },
   "globals": {
     "$nuxt": true
