@@ -1,28 +1,47 @@
 const secrets = require('./secrets.json');
+import { defineNuxtConfig } from '@nuxt/bridge';
 
-export default {
+export default defineNuxtConfig({
+  bridge: {
+    meta: true,
+  },
+
   target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'PistonVideo',
-    meta: [{ name: 'format-detection', content: 'telephone=no' }],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    meta: [
+      {
+        name: 'format-detection',
+        content: 'telephone=no',
+      },
+    ],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/vue-plyr', mode: 'client' }],
+  plugins: [
+    {
+      src: '~/plugins/vue-plyr',
+      mode: 'client',
+    },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
@@ -36,8 +55,6 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    // https://go.nuxtjs.dev/content
-    '@nuxt/content',
     'nuxt-helmet',
     '@nuxtjs/auth-next',
   ],
@@ -88,6 +105,7 @@ export default {
   tailwindcss: {
     // add '~tailwind.config` alias
     exposeConfig: true,
+    viewer: false,
   },
 
   colorMode: {
@@ -109,7 +127,7 @@ export default {
   auth: {
     redirect: {
       login: '/login',
-      callback: '/callback',
+      callback: '/oauth/callback',
       home: '/',
     },
     strategies: {
@@ -125,9 +143,18 @@ export default {
           autoFetch: true,
         },
         endpoints: {
-          login: { url: '/api/auth/login', method: 'post' },
-          logout: { url: '/api/auth/logout', method: 'post' },
-          user: { url: '/api/auth/user', method: 'get' },
+          login: {
+            url: '/api/auth/login',
+            method: 'post',
+          },
+          logout: {
+            url: '/api/auth/logout',
+            method: 'post',
+          },
+          user: {
+            url: '/api/auth/user',
+            method: 'get',
+          },
         },
       },
       github: {
@@ -154,4 +181,4 @@ export default {
   router: {
     middleware: ['auth'],
   },
-};
+});

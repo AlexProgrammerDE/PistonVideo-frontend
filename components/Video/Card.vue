@@ -1,14 +1,14 @@
 <template>
   <div class="p-2">
     <div class="w-64 h-auto rounded overflow-hidden shadow-lg bg-gray-100">
-      <a v-bind:href="'/watch?id=' + video.id"><img v-bind:src="video.thumbnailUrl" alt="Thumbnail" /></a>
+      <a :href="'/watch?id=' + video.id"><img alt="Thumbnail" :src="video.thumbnailUrl" /></a>
       <div class="px-6 py-3">
         <div class="flex justify-center md:justify-end -mt-12">
-          <a v-bind:href="'/user?id=' + video.uploader.id">
-            <img class="w-14 h-14 object-cover rounded-full border-2 border-indigo-500" v-bind:src="video.uploader.avatarUrl" />
+          <a :href="'/user?id=' + video.uploader.id">
+            <img class="w-14 h-14 object-cover rounded-full border-2 border-indigo-500" :src="video.uploader.avatarUrl" />
           </a>
         </div>
-        <a v-bind:href="'/watch?id=' + video.id">
+        <a :href="'/watch?id=' + video.id">
           <div class="font-bold text-base mb-2">{{ video.title }}</div>
         </a>
         <div v-html="description"></div>
@@ -28,7 +28,7 @@ var renderer = new MarkdownIt();
 export default {
   props: ['video'],
   data() {
-    var descSlice = this.video.description
+    var descSlice = this.video.description;
     return { description: renderer.render(descSlice.length > 200 ? descSlice.substring(0, 200) : descSlice) };
   },
 };

@@ -1,5 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-
+// const defaultTheme = require('tailwindcss/defaultTheme');
+// "nightwind": "^1.1.12",
 module.exports = {
   darkMode: 'class',
   theme: {
@@ -13,5 +13,7 @@ module.exports = {
   variants: {
     nightwind: ['focus'],
   },
-  plugins: [require('nightwind'), require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography')],
+  content: [`components/**/*.{vue,js}`, `layouts/**/*.vue`, `pages/**/*.vue`, `plugins/**/*.{js,ts}`, `nuxt.config.{js,ts}`],
 };
+/* require('nightwind'), */

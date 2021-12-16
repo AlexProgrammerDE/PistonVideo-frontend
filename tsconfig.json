@@ -1,9 +1,14 @@
 {
+  "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "target": "ES2018",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "lib": [
+      "ESNext",
+      "ESNext.AsyncIterable",
+      "DOM"
+    ],
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
@@ -12,8 +17,12 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"]
+      "~/*": [
+        "./*"
+      ],
+      "@/*": [
+        "./*"
+      ]
     },
     "types": [
       "@nuxt/types",
@@ -23,8 +32,12 @@
       "@types/nuxtjs__auth",
       "@nuxtjs/auth",
       "@nuxtjs/color-mode",
-      "@types/markdown-it",
+      "@types/markdown-it"
     ]
   },
-  "exclude": ["node_modules", ".nuxt", "dist"]
+  "exclude": [
+    "node_modules",
+    ".nuxt",
+    "dist"
+  ]
 }
