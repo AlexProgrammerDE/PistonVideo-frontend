@@ -1,0 +1,7 @@
+.sidebarTitle {
+  @apply flex flex-row items-center justify-center my-1 p-2 h-14 border-b border-gray-400 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-red-400 content-center;
+}
+
+.sidebarLink {
+  @apply relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 w-full;
+}
