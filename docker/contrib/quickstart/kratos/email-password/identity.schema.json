@@ -7,11 +7,21 @@
     "traits": {
       "type": "object",
       "properties": {
+        "username": {
+          "type": "string",
+          "title": "Username",
+          "ory.sh/kratos": {
+            "credentials": {
+              "password": {
+                "identifier": true
+              }
+            }
+          }
+        },
         "email": {
           "type": "string",
           "format": "email",
           "title": "E-Mail",
-          "minLength": 3,
           "ory.sh/kratos": {
             "credentials": {
               "password": {
@@ -38,10 +48,19 @@
               "type": "string"
             }
           }
+        },
+        "discord": {
+          "title": "Discord ID",
+          "type": "string"
+        },
+        "github": {
+          "title": "GitHub Username",
+          "type": "string"
         }
       },
       "required": [
-        "email"
+        "email",
+        "username"
       ],
       "additionalProperties": false
     }
