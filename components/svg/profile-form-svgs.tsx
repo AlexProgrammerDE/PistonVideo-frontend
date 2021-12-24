@@ -14,7 +14,7 @@ export function Username() {
         strokeWidth="2"
       />
     </svg>
-  )
+  );
 }
 
 export function Email() {
@@ -33,7 +33,7 @@ export function Email() {
         strokeWidth="2"
       />
     </svg>
-  )
+  );
 }
 
 export function Lock() {
@@ -52,5 +52,5 @@ export function Lock() {
         strokeWidth="2"
       />
     </svg>
-  )
+  );
 }

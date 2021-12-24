@@ -1,14 +1,47 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SideBarHead from './head';
-import { signIn, signOut, useSession } from 'next-auth/react';
 import styles from './SideBar.module.css';
 import { Cog, Home, Profile, SignIn, SignOut, Upload } from '../svg/sidebar';
-
-function userLogout() {}
+import { AxiosError } from 'axios';
+import { createLogoutHandler } from '../../pkg';
+import { useRouter } from 'next/router';
+import ory from '../../pkg/sdk';
 
 export default function SideBarList() {
-  const { data: session } = useSession();
+  const [session, setSession] = useState<string>(
+    'No valid Ory Session was found.\nPlease sign in to receive one.'
+  );
+  const [hasSession, setHasSession] = useState<boolean>(false);
+  const router = useRouter();
+  const onLogout = createLogoutHandler();
+
+  useEffect(() => {
+    ory
+      .toSession()
+      .then(({ data }) => {
+        setSession(JSON.stringify(data, null, 2));
+        setHasSession(true);
+      })
+      .catch((err: AxiosError) => {
+        switch (err.response?.status) {
+          case 403:
+          // This is a legacy error code thrown. See code 422 for
+          // more details.
+          case 422:
+            // This status code is returned when we are trying to
+            // validate a session which has not yet completed
+            // it's second factor
+            return router.push('/login?aal=aal2');
+          case 401:
+            // do nothing, the user is not logged in
+            return;
+        }
+
+        // Something else happened!
+        return Promise.reject(err);
+      });
+  });
 
   return (
     <div className="overflow-y-auto overflow-x-hidden flex-grow">
@@ -24,7 +57,7 @@ export default function SideBarList() {
             </a>
           </Link>
         </li>
-        {session && (
+        {hasSession && (
           <>
             <SideBarHead title="Content" />
             <li>
@@ -42,7 +75,7 @@ export default function SideBarList() {
           </>
         )}
         <SideBarHead title="User" />
-        {session ? (
+        {hasSession ? (
           <>
             <li>
               <Link href="/profile">
@@ -69,7 +102,7 @@ export default function SideBarList() {
               </Link>
             </li>
             <li>
-              <button onClick={() => signOut()} className={styles.sidebarLink}>
+              <button onClick={onLogout} className={styles.sidebarLink}>
                 <span className="inline-flex justify-center items-center ml-4">
                   <SignOut />
                 </span>
@@ -82,14 +115,16 @@ export default function SideBarList() {
         ) : (
           <>
             <li>
-              <button onClick={() => signIn()} className={styles.sidebarLink}>
-                <span className="inline-flex justify-center items-center ml-4">
-                  <SignIn />
-                </span>
-                <span className="ml-2 text-sm tracking-wide truncate">
-                  Login
-                </span>
-              </button>
+              <Link href="/login">
+                <a className={styles.sidebarLink}>
+                  <span className="inline-flex justify-center items-center ml-4">
+                    <SignIn />
+                  </span>
+                  <span className="ml-2 text-sm tracking-wide truncate">
+                    Login
+                  </span>
+                </a>
+              </Link>
             </li>
           </>
         )}

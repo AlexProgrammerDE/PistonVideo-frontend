@@ -1,0 +1,4 @@
+.divider {
+  @apply w-full bg-gray-200 my-3;
+  height: 1px;
+}

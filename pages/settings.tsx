@@ -1,30 +1,218 @@
+import {
+  SelfServiceSettingsFlow,
+  SubmitSelfServiceSettingsFlowBody,
+} from '@ory/kratos-client';
+import { AxiosError } from 'axios';
+import type { NextPage } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { ReactNode, useEffect, useState } from 'react';
+
+import { CenterLink, Flow, Messages, Methods } from '../pkg';
+import { handleFlowError } from '../pkg/errors';
+import ory from '../pkg/sdk';
 import Content from '../components/utils/Content';
-import { useSession, getSession } from "next-auth/react"
-import AuthGuard from '../components/auth-guard';
 
-// noinspection JSUnusedGlobalSymbols
-export default function Settings() {
-  return (
-    <AuthGuard>
-      <Content>
-        <div className="relative p-5 space-y-3">
-          <h1 className="settings-title">Settings</h1>
-
-          <ul>
-            <li>
-              <span className="settings-component-title">Select theme:</span>
-              <select
-                v-model="$colorMode.preference"
-                className="text-md font-bold rounded border-2 border-purple-300 text-gray-600 p-2 bg-gray-50 hover:border-gray-400 focus:outline-none appearance-none"
-              >
-                <option value="system">System</option>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-              </select>
-            </li>
-          </ul>
-        </div>
-      </Content>
-    </AuthGuard>
-  );
+interface Props {
+  flow?: SelfServiceSettingsFlow;
+  only?: Methods;
 }
+
+function SettingsCard({
+  flow,
+  only,
+  children,
+}: Props & { children: ReactNode }) {
+  if (!flow) {
+    return null;
+  }
+
+  const nodes = only
+    ? flow.ui.nodes.filter(({ group }) => group === only)
+    : flow.ui.nodes;
+
+  if (nodes.length === 0) {
+    return null;
+  }
+
+  return <div>{children}</div>;
+}
+
+const Settings: NextPage = () => {
+  const [flow, setFlow] = useState<SelfServiceSettingsFlow>();
+
+  // Get ?flow=... from the URL
+  const router = useRouter();
+  const { flow: flowId, return_to: returnTo } = router.query;
+
+  useEffect(() => {
+    // If the router is not ready yet, or we already have a flow, do nothing.
+    if (!router.isReady || flow) {
+      return;
+    }
+
+    // If ?flow=.. was in the URL, we fetch it
+    if (flowId) {
+      ory
+        .getSelfServiceSettingsFlow(String(flowId))
+        .then(({ data }) => {
+          setFlow(data);
+        })
+        .catch(handleFlowError(router, 'settings', setFlow));
+      return;
+    }
+
+    // Otherwise we initialize it
+    ory
+      .initializeSelfServiceSettingsFlowForBrowsers(
+        returnTo ? String(returnTo) : undefined
+      )
+      .then(({ data }) => {
+        setFlow(data);
+      })
+      .catch(handleFlowError(router, 'settings', setFlow));
+  }, [flowId, router, router.isReady, returnTo, flow]);
+
+  const onSubmit = (values: SubmitSelfServiceSettingsFlowBody) =>
+    router
+      // On submission, add the flow ID to the URL but do not navigate. This prevents the user loosing
+      // his data when she/he reloads the page.
+      .push(`/settings?flow=${flow?.id}`, undefined, { shallow: true })
+      .then(() =>
+        ory
+          .submitSelfServiceSettingsFlow(String(flow?.id), undefined, values)
+          .then(({ data }) => {
+            // The settings have been saved and the flow was updated. Let's show it to the user!
+            setFlow(data);
+          })
+          .catch(handleFlowError(router, 'settings', setFlow))
+          .catch(async (err: AxiosError) => {
+            // If the previous handler did not catch the error it's most likely a form validation error
+            if (err.response?.status === 400) {
+              // Yup, it is!
+              setFlow(err.response?.data);
+              return;
+            }
+
+            return Promise.reject(err);
+          })
+      );
+
+  return (
+    <Content>
+      <div className="relative p-5 space-y-3">
+        <h1 className="settings-title">
+          Profile Management and Security Settings
+        </h1>
+        <SettingsCard only="profile" flow={flow}>
+          <h3 className="settings-subheading">Profile Settings</h3>
+          <Messages messages={flow?.ui.messages} />
+          <Flow
+            hideGlobalMessages
+            onSubmit={onSubmit}
+            only="profile"
+            flow={flow}
+          />
+        </SettingsCard>
+        <SettingsCard only="password" flow={flow}>
+          <h3 className="settings-subheading">Change Password</h3>
+
+          <Messages messages={flow?.ui.messages} />
+          <Flow
+            hideGlobalMessages
+            onSubmit={onSubmit}
+            only="password"
+            flow={flow}
+          />
+        </SettingsCard>
+        <SettingsCard only="oidc" flow={flow}>
+          <h3 className="settings-subheading">Manage Social Sign In</h3>
+
+          <Messages messages={flow?.ui.messages} />
+          <Flow
+            hideGlobalMessages
+            onSubmit={onSubmit}
+            only="oidc"
+            flow={flow}
+          />
+        </SettingsCard>
+        <SettingsCard only="lookup_secret" flow={flow}>
+          <h3 className="settings-subheading">
+            Manage 2FA Backup Recovery Codes
+          </h3>
+          <Messages messages={flow?.ui.messages} />
+          <p>
+            Recovery codes can be used in panic situations where you have lost
+            access to your 2FA device.
+          </p>
+
+          <Flow
+            hideGlobalMessages
+            onSubmit={onSubmit}
+            only="lookup_secret"
+            flow={flow}
+          />
+        </SettingsCard>
+        <SettingsCard only="totp" flow={flow}>
+          <h3 className="settings-subheading">
+            Manage 2FA TOTP Authenticator App
+          </h3>
+          <p>
+            Add a TOTP Authenticator App to your account to improve your account
+            security. Popular Authenticator Apps are{' '}
+            <a href="https://www.lastpass.com" rel="noreferrer" target="_blank">
+              LastPass
+            </a>{' '}
+            and Google Authenticator (
+            <a
+              href="https://apps.apple.com/us/app/google-authenticator/id388497605"
+              target="_blank"
+              rel="noreferrer"
+            >
+              iOS
+            </a>
+            ,{' '}
+            <a
+              href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Android
+            </a>
+            ).
+          </p>
+          <Messages messages={flow?.ui.messages} />
+          <Flow
+            hideGlobalMessages
+            onSubmit={onSubmit}
+            only="totp"
+            flow={flow}
+          />
+        </SettingsCard>
+        <SettingsCard only="webauthn" flow={flow}>
+          <h3 className="settings-subheading">
+            Manage Hardware Tokens and Biometrics
+          </h3>
+          <Messages messages={flow?.ui.messages} />
+          <p>
+            Use Hardware Tokens (e.g. YubiKey) or Biometrics (e.g. FaceID,
+            TouchID) to enhance your account security.
+          </p>
+          <Flow
+            hideGlobalMessages
+            onSubmit={onSubmit}
+            only="webauthn"
+            flow={flow}
+          />
+        </SettingsCard>
+        <div>
+          <Link href="/" passHref>
+            <CenterLink>Go back</CenterLink>
+          </Link>
+        </div>
+      </div>
+    </Content>
+  );
+};
+
+export default Settings;
