@@ -1,5 +1,5 @@
 import { UiText } from '@ory/kratos-client';
-import { Alert, AlertContent } from '@ory/themes';
+import Alert from './custom/Alert';
 
 interface MessageProps {
   message: UiText;
@@ -8,9 +8,7 @@ interface MessageProps {
 export const Message = ({ message }: MessageProps) => {
   return (
     <Alert severity={message.type === 'error' ? 'error' : 'info'}>
-      <AlertContent data-testid={`ui/message/${message.id}`}>
-        {message.text}
-      </AlertContent>
+      <h3 data-testid={`ui/message/${message.id}`}>{message.text}</h3>
     </Alert>
   );
 };

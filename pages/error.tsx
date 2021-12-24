@@ -1,5 +1,4 @@
 import { SelfServiceError } from '@ory/kratos-client';
-import { CardTitle, CodeBox } from '@ory/themes';
 import { AxiosError } from 'axios';
 import type { NextPage } from 'next';
 import Link from 'next/link';
@@ -8,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 import { ActionCard, MarginCard } from '../pkg';
 import ory from '../pkg/sdk';
+import CodeBox from '../pkg/ui/custom/CodeBox';
 
 const Login: NextPage = () => {
   const [error, setError] = useState<SelfServiceError | string>();
@@ -49,7 +49,7 @@ const Login: NextPage = () => {
   return (
     <>
       <MarginCard wide>
-        <CardTitle>An error occurred</CardTitle>
+        <h2>An error occurred</h2>
         <CodeBox code={JSON.stringify(error, null, 2)} />
       </MarginCard>
       <ActionCard wide>

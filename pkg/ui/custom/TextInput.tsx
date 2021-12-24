@@ -17,7 +17,7 @@ export interface TextInputProps
 const TextInput = ({
   className,
   textClassName,
-                     titleClassName,
+  titleClassName,
   title,
   subtitle,
   disabled,

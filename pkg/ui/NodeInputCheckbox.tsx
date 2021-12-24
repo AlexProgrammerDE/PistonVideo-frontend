@@ -1,7 +1,7 @@
 import { getNodeLabel } from '@ory/integrations/ui';
 
 import { NodeInputProps } from './helpers';
-import { Checkbox } from '@ory/themes';
+import Checkbox from './custom/Checkbox';
 
 export function NodeInputCheckbox<T>({
   node,

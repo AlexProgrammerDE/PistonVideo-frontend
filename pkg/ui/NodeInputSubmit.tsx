@@ -1,5 +1,5 @@
 import { getNodeLabel } from '@ory/integrations/ui';
-
+import styles from './node.module.css';
 import { NodeInputProps } from './helpers';
 
 export function NodeInputSubmit<T>({
@@ -12,7 +12,7 @@ export function NodeInputSubmit<T>({
   return (
     <>
       <button
-        className="p-2 border border-indigo-500 hover:bg-indigo-500 hover:text-white duration-100 ease-in-out w-2/12 text-indigo-500 flex flex-row justify-center items-center gap-1"
+        className={styles.nodeButton}
         name={attributes.name}
         onClick={(e) => {
           // On click, we set this value, and once set, dispatch the submission!

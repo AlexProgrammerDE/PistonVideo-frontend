@@ -4,7 +4,6 @@ import {
 } from '@ory/kratos-client';
 import { AxiosError } from 'axios';
 import type { NextPage } from 'next';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
 

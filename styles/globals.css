@@ -22,6 +22,10 @@
   @apply p-2 border border-indigo-500 hover:bg-indigo-500 hover:text-white duration-100 ease-in-out w-2/12 text-indigo-500 flex flex-row justify-center items-center gap-1;
 }
 
+.settings-select {
+  @apply text-lg font-bold rounded border-2 border-purple-300 text-gray-600 p-2 bg-gray-50 hover:border-gray-400 focus:outline-none appearance-none;
+}
+
 .upload-button {
   @apply w-64 flex flex-col items-center px-4 py-6 bg-gray-100 hover:bg-purple-600 hover:text-white text-purple-600 rounded-md shadow-md tracking-wide uppercase cursor-pointer ease-linear transition-all duration-150;
 }

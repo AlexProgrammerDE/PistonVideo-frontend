@@ -32,14 +32,16 @@ export function NodeInputDefault<T>(props: NodeInputProps) {
         disabled={attributes.disabled || disabled}
         help={node.messages.length > 0}
         state={
-          node.messages.find(({ type }) => type === 'error') ? 'error' : undefined
+          node.messages.find(({ type }) => type === 'error')
+            ? 'error'
+            : undefined
         }
         subtitle={
           <>
             {node.messages.map(({ text, id }, k) => (
               <span key={`${id}-${k}`} data-testid={`ui/message/${id}`}>
-              {text}
-            </span>
+                {text}
+              </span>
             ))}
           </>
         }

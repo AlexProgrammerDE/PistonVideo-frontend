@@ -1,13 +1,7 @@
-import styled from 'styled-components';
-import { Card } from '@ory/themes';
+export function MarginCard({ children }) {
+  return <div className="m-auto">{children}</div>;
+}
 
-export const MarginCard = styled(Card)`
-  background-color: rgb(243 244 246);
-  margin-top: 70px;
-  margin-bottom: 18px;
-`;
-
-export const ActionCard = styled(Card)`
-  background-color: rgb(243 244 246);
-  @apply mb-2;
-`;
+export function ActionCard({ children }) {
+  return <div>{children}</div>;
+}
