@@ -9,7 +9,7 @@ const handle = app.getRequestHandler();
 
 const apiPaths = {
   '/backend': {
-    target: 'http://localhost:3080',
+    target: 'http://localhost:3434',
     pathRewrite: {
       '^/backend': '/',
     },
