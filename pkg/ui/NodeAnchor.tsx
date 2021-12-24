@@ -1,5 +1,4 @@
 import { UiNode, UiNodeAnchorAttributes } from '@ory/kratos-client';
-import { Button } from '@ory/themes';
 
 interface Props {
   node: UiNode;
@@ -8,7 +7,7 @@ interface Props {
 
 export const NodeAnchor = ({ node, attributes }: Props) => {
   return (
-    <Button
+    <button
       data-testid={`node/anchor/${attributes.id}`}
       onClick={(e) => {
         e.stopPropagation();
@@ -17,6 +16,6 @@ export const NodeAnchor = ({ node, attributes }: Props) => {
       }}
     >
       {attributes.title.text}
-    </Button>
+    </button>
   );
 };

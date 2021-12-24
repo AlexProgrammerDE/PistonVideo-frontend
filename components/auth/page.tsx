@@ -7,7 +7,7 @@ export default function AuthPage({ children, title }) {
         <AuthHeader title={title} />
         {children}
       </div>
-      <div className="p-4">© PistonVideo 2021</div>;
+      <div className="p-4">© PistonVideo 2021</div>
     </div>
   );
 }

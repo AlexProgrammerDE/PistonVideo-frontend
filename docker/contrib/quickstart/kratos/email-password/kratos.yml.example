@@ -4,54 +4,70 @@ dsn: memory
 
 serve:
   public:
-    base_url: http://127.0.0.1:4433/
+    base_url: https://pistonvideo.com/api/.ory
     cors:
       enabled: true
+      allowed_origins:
+        - https://pistonvideo.com
+        - http://localhost:4433
   admin:
-    base_url: http://kratos:4434/
+    base_url: http://pistonvideo_kratos:4434/
 
 selfservice:
-  default_browser_return_url: http://127.0.0.1:4455/
+  default_browser_return_url: https://pistonvideo.com/
   whitelisted_return_urls:
-    - http://127.0.0.1:4455
+    - https://pistonvideo.com/
 
   methods:
     password:
       enabled: true
     oidc:
       enabled: true
+      config:
+        providers:
+          - id: discord # this is `<provider-id>` in the Authorization callback URL. DO NOT CHANGE IT ONCE SET!
+            provider: discord
+            client_id: "..." # Replace this with the OAuth2 Client ID provided by Discord
+            client_secret: "..." # Replace this with the OAuth2 Client Secret provided by Discord
+            mapper_url: file:///etc/config/kratos/oidc.discord.jsonnet
+            scope:
+              - identify
+              - email
 
   flows:
     error:
-      ui_url: http://127.0.0.1:4455/error
+      ui_url: https://pistonvideo.com/error
 
     settings:
-      ui_url: http://127.0.0.1:4455/settings
+      ui_url: https://pistonvideo.com/settings
       privileged_session_max_age: 15m
 
     recovery:
       enabled: true
-      ui_url: http://127.0.0.1:4455/recovery
+      ui_url: https://pistonvideo.com/recovery
 
     verification:
       enabled: true
-      ui_url: http://127.0.0.1:4455/verification
+      ui_url: https://pistonvideo.com/verification
       after:
-        default_browser_return_url: http://127.0.0.1:4455/
+        default_browser_return_url: https://pistonvideo.com/
 
     logout:
       after:
-        default_browser_return_url: http://127.0.0.1:4455/login
+        default_browser_return_url: https://pistonvideo.com/login
 
     login:
-      ui_url: http://127.0.0.1:4455/login
+      ui_url: https://pistonvideo.com/login
       lifespan: 10m
 
     registration:
       lifespan: 10m
-      ui_url: http://127.0.0.1:4455/registration
+      ui_url: https://pistonvideo.com/registration
       after:
         password:
+          hooks:
+            - hook: session
+        oidc:
           hooks:
             - hook: session
 
