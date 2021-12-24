@@ -158,6 +158,7 @@ export class Flow<T extends Values> extends Component<Props<T>, State<T>> {
 
     return (
       <form
+        className="relative py-5 space-y-3"
         action={flow.ui.action}
         method={flow.ui.method}
         onSubmit={this.handleSubmit}

@@ -23,7 +23,7 @@ export function NodeInputButton<T>({
   return (
     <>
       <button
-        className=""
+        className="p-2 border border-indigo-500 hover:bg-indigo-500 hover:text-white duration-100 ease-in-out w-2/12 text-indigo-500 flex flex-row justify-center items-center gap-1"
         name={attributes.name}
         onClick={(e) => {
           onClick();

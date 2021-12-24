@@ -63,7 +63,7 @@ export default function Upload() {
         </label>
         <input
           id="title"
-          className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-100 focus:border-gray-500"
+          className="settings-text-input"
           placeholder="Watching toasters toast Ep. 2"
           required
           type="text"
@@ -74,7 +74,7 @@ export default function Upload() {
         </label>
         <textarea
           id="description"
-          className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-100 focus:border-gray-500"
+          className="settings-text-input"
           placeholder="Toast makes me happy. owo"
           rows={4}
         />

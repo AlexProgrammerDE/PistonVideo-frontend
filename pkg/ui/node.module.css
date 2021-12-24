@@ -1,0 +1,3 @@
+.node-button {
+    @apply border border-indigo-500 hover:bg-indigo-500 hover:text-white duration-100 ease-in-out w-6/12 text-indigo-500 p-2 flex flex-row justify-center items-center gap-1
+}

@@ -14,6 +14,10 @@
   @apply block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2;
 }
 
+.settings-text-input {
+  @apply appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-100 focus:border-gray-500;
+}
+
 .settings-submit-button {
   @apply p-2 border border-indigo-500 hover:bg-indigo-500 hover:text-white duration-100 ease-in-out w-2/12 text-indigo-500 flex flex-row justify-center items-center gap-1;
 }

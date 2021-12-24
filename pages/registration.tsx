@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 // Import render helpers
-import { ActionCard, CenterLink, Flow, MarginCard } from '../pkg';
+import { ActionCard, Flow, MarginCard } from '../pkg';
 import { handleFlowError } from '../pkg/errors';
 // Import the SDK
 import ory from '../pkg/sdk';
@@ -89,9 +89,13 @@ const Registration: NextPage = () => {
           <Flow onSubmit={onSubmit} flow={flow} />
         </MarginCard>
         <ActionCard>
-          <CenterLink data-testid="cta-link" href="/login">
+          <a
+            className="text-center text-sm"
+            data-testid="cta-link"
+            href="/login"
+          >
             Sign in
-          </CenterLink>
+          </a>
         </ActionCard>
       </AuthPage>
     </>

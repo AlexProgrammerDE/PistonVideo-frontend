@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import { ActionCard, CenterLink, MarginCard } from '../pkg';
+import { ActionCard, MarginCard } from '../pkg';
 import ory from '../pkg/sdk';
 
 const Login: NextPage = () => {
@@ -54,7 +54,7 @@ const Login: NextPage = () => {
       </MarginCard>
       <ActionCard wide>
         <Link href="/" passHref>
-          <CenterLink>Go back</CenterLink>
+          <a className="text-center text-sm">Go back</a>
         </Link>
       </ActionCard>
     </>

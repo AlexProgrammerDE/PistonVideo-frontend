@@ -8,13 +8,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import {
-  ActionCard,
-  CenterLink,
-  createLogoutHandler,
-  Flow,
-  MarginCard,
-} from '../pkg';
+import { ActionCard, createLogoutHandler, Flow, MarginCard } from '../pkg';
 import { handleFlowError, handleGetFlowError } from '../pkg/errors';
 import ory from '../pkg/sdk';
 import AuthPage from '../components/auth/page';
@@ -115,20 +109,24 @@ const Login: NextPage = () => {
       </MarginCard>
       {aal || refresh ? (
         <ActionCard>
-          <CenterLink data-testid="logout-link" onClick={onLogout}>
+          <a
+            className="text-center text-sm"
+            data-testid="logout-link"
+            onClick={onLogout}
+          >
             Log out
-          </CenterLink>
+          </a>
         </ActionCard>
       ) : (
         <>
           <ActionCard>
             <Link href="/registration" passHref>
-              <CenterLink>Create account</CenterLink>
+              <a className="text-center text-sm">Create account</a>
             </Link>
           </ActionCard>
           <ActionCard>
             <Link href="/recovery" passHref>
-              <CenterLink>Recover your account</CenterLink>
+              <a className="text-center text-sm">Recover your account</a>
             </Link>
           </ActionCard>
         </>

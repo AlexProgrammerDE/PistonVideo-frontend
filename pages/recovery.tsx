@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import { ActionCard, CenterLink, Flow, MarginCard } from '../pkg';
+import { ActionCard, Flow, MarginCard } from '../pkg';
 import { handleFlowError } from '../pkg/errors';
 import ory from '../pkg/sdk';
 import AuthPage from '../components/auth/page';
@@ -89,7 +89,7 @@ const Recovery: NextPage = () => {
         </MarginCard>
         <ActionCard>
           <Link href="/" passHref>
-            <CenterLink>Go back</CenterLink>
+            <a className="text-center text-sm">Go back</a>
           </Link>
         </ActionCard>
       </AuthPage>

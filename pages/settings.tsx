@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
 
-import { CenterLink, Flow, Messages, Methods } from '../pkg';
+import { Flow, Messages, Methods } from '../pkg';
 import { handleFlowError } from '../pkg/errors';
 import ory from '../pkg/sdk';
 import Content from '../components/utils/Content';
@@ -205,11 +205,6 @@ const Settings: NextPage = () => {
             flow={flow}
           />
         </SettingsCard>
-        <div>
-          <Link href="/" passHref>
-            <CenterLink>Go back</CenterLink>
-          </Link>
-        </div>
       </div>
     </Content>
   );
