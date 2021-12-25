@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { Video } from '../models/video';
+import Image from 'next/image';
 
 export default function VideoCard({ video }: { video: Video }) {
   return (
@@ -11,9 +11,12 @@ export default function VideoCard({ video }: { video: Video }) {
         <div className="px-6 py-3">
           <div className="flex justify-center md:justify-end -mt-12">
             <a href={'/user?id=' + video.uploader.id}>
-              <Image
+              <img
+                width={"3.5rem"}
+                height={"3.5rem"}
                 className="w-14 h-14 object-cover rounded-full border-2 border-indigo-500"
                 src={video.uploader.avatarUrl}
+                alt={'Avatar of ' + video.uploader.username}
               />
             </a>
           </div>

@@ -2,7 +2,8 @@ import SideBarComponent from '../components/sidebar/component';
 import VideoPlayerComponent from '../components/video-player';
 import { Video } from '../components/models/video';
 import VideoList from '../components/video/list';
-import Image from 'next/image';
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
 
 // noinspection JSUnusedGlobalSymbols
 export default function Watch({ video }: { video: Video }) {
@@ -10,7 +11,7 @@ export default function Watch({ video }: { video: Video }) {
     <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
       <SideBarComponent />
       {video && (
-        <div className="m-5 w-full shadow-lg bg-gray-100">
+        <div className="flex-grow m-5 w-full shadow-lg bg-gray-100">
           <VideoPlayerComponent video={video} />
           <div className="px-6 py-3">
             <div className="font-bold text-2xl mb-2">{video.title}</div>
@@ -26,7 +27,7 @@ export default function Watch({ video }: { video: Video }) {
               ))}
             </div>
             <div className="my-3 flex flex-row w-full bg-gray-300 items-center p-6 space-x-6 rounded-xl shadow-lg">
-              <Image
+              <img
                 className="rounded-full h-10 w-10 items-center justify-center"
                 src={video.uploader.avatarUrl}
               />
@@ -47,3 +48,16 @@ export default function Watch({ video }: { video: Video }) {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const response = await axios.get('/backend/videodata', {
+    params: { id: context.query['id'] },
+
+  });
+  const video: Video = response.data;
+  console.log(video);
+
+  return {
+    props: {video}, // will be passed to the page component as props
+  };
+};

@@ -2,6 +2,7 @@ export class Video {
   title: string;
   description: string;
   id: string;
+  videoUrl: string;
   thumbnailUrl: string;
   tags: string[];
   uploader: User;

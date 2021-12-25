@@ -8,37 +8,16 @@ export default function VideoPlayerComponent({ video }: { video: Video }) {
       source={{
         /* https://github.com/sampotts/plyr#the-source-setter */
         type: 'video',
-        title: 'Example title',
+        title: video.title,
         sources: [
           {
-            src: '/path/to/movie.mp4',
+            src: video.videoUrl,
             type: 'video/mp4',
             size: 720,
           },
-          {
-            src: '/path/to/movie.webm',
-            type: 'video/webm',
-            size: 1080,
-          },
         ],
-        poster: '/path/to/poster.jpg',
-        previewThumbnails: {
-          src: '/path/to/thumbnails.vtt',
-        },
+        poster: video.thumbnailUrl,
         tracks: [
-          {
-            kind: 'captions',
-            label: 'English',
-            srcLang: 'en',
-            src: '/path/to/captions.en.vtt',
-            default: true,
-          },
-          {
-            kind: 'captions',
-            label: 'French',
-            srcLang: 'fr',
-            src: '/path/to/captions.fr.vtt',
-          },
         ],
       }}
       options={
