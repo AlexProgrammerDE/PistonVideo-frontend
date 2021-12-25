@@ -1,24 +1,53 @@
-import { Thumbnail, Video } from '../components/models/upload';
 import Content from '../components/utils/Content';
 import Cloud from '../components/svg/cloud';
-
-const uploading = false;
-
-function submit() {}
-
-function previewFiles() {}
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 // noinspection JSUnusedGlobalSymbols
 export default function Upload() {
-  const video: Video = new Video();
-  const thumbnail: Thumbnail = new Thumbnail();
+  const router = useRouter();
+  const [video, setVideo] = useState<File>();
+  const [thumbnail, setThumbnail] = useState<File>();
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [uploading, setUploading] = useState(false);
+
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (title !== undefined && video !== undefined && thumbnail !== undefined) {
+      const form = new FormData();
+
+      form.append('title', title);
+      form.append('description', description);
+      form.append('video', video, video.name);
+      form.append('thumbnail', thumbnail, thumbnail.name);
+
+      setUploading(true);
+      try {
+        axios
+          .post('/backend/restricted/video/create', form, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+          .then((resp) => {
+            router.push('/watch?id=' + resp.data.id);
+          });
+      } catch (err) {
+        // Handle Error Here
+        console.error(err);
+      }
+      setUploading(false);
+    }
+  };
 
   return (
     <Content>
       <form
         autoComplete="off"
         className="relative p-5 space-y-3 w-4/12"
-        onSubmit={submit}
+        onSubmit={submitForm}
       >
         <h1 className="settings-title">Upload Video</h1>
         <label className="settings-component-title">
@@ -35,7 +64,7 @@ export default function Upload() {
             className="hidden"
             required
             type="file"
-            onChange={previewFiles}
+            onChange={(e) => setVideo(e.target.files[0])}
           />
         </label>
         <label className="settings-component-title">
@@ -54,7 +83,7 @@ export default function Upload() {
             className="hidden"
             required
             type="file"
-            onChange={previewFiles}
+            onChange={(e) => setThumbnail(e.target.files[0])}
           />
         </label>
         <label className="settings-component-title" htmlFor="title">
@@ -67,6 +96,7 @@ export default function Upload() {
           placeholder="Watching toasters toast Ep. 2"
           required
           type="text"
+          onChange={(e) => setTitle(e.target.value)}
         />
         <label className="settings-component-title" htmlFor="description">
           {' '}
@@ -77,6 +107,7 @@ export default function Upload() {
           className="settings-text-input"
           placeholder="Toast makes me happy. owo"
           rows={4}
+          onChange={(e) => setDescription(e.target.value)}
         />
         {uploading ? (
           <div>

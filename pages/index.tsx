@@ -2,15 +2,17 @@ import SideBarComponent from '../components/sidebar/component';
 import VideoList from '../components/video/list';
 import { edgeConfig } from '@ory/integrations/next';
 import { Configuration, Session, V0alpha2Api } from '@ory/kratos-client';
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
+import { GetServerSideProps } from 'next';
+import { Video } from '../components/models/video';
 
 // Initialize the Ory Kratos SDK which will connect to the
 // /api/.ory/ route we created in the previous step.
 const kratos = new V0alpha2Api(new Configuration(edgeConfig));
 
 // noinspection JSUnusedGlobalSymbols
-export default function Home() {
+export default function Home({ videos }: { videos: Video[] }) {
   // Contains the current session or undefined.
   const [session, setSession] = useState<Session>();
 
@@ -53,7 +55,22 @@ export default function Home() {
   return (
     <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
       <SideBarComponent />
-      <VideoList />
+      <VideoList videos={videos} />
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const response = await axios.get('/backend/suggestions', {
+    params: { amount: 10 },
+  });
+
+  let videos: Video[] = [];
+  response.data.forEach((video: Video) => {
+    videos.push(video);
+  });
+
+  return {
+    props: { videos }, // will be passed to the page component as props
+  };
+};

@@ -1,5 +1,4 @@
 import { Video } from '../models/video';
-import Image from 'next/image';
 
 export default function VideoCard({ video }: { video: Video }) {
   return (
@@ -26,8 +25,8 @@ export default function VideoCard({ video }: { video: Video }) {
           <div dangerouslySetInnerHTML={{ __html: video.description }} />
         </div>
         <div className="px-6 pt-1 pb-2">
-          {video.tags.map((tag) => (
-            <span className="inline-block bg-gray-200 rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-1">
+          {video.tags.map((tag, index) => (
+            <span key={index} className="inline-block bg-gray-200 rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-1">
               #{tag}
             </span>
           ))}

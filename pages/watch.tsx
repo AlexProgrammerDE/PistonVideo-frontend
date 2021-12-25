@@ -6,7 +6,13 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next';
 
 // noinspection JSUnusedGlobalSymbols
-export default function Watch({ video }: { video: Video }) {
+export default function Watch({
+  video,
+  videos,
+}: {
+  video: Video;
+  videos: Video[];
+}) {
   return (
     <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
       <SideBarComponent />
@@ -43,7 +49,7 @@ export default function Watch({ video }: { video: Video }) {
       )}
 
       <div className="flex-auto max-w-2xl">
-        <VideoList />
+        <VideoList videos={videos} />
       </div>
     </div>
   );
@@ -52,12 +58,19 @@ export default function Watch({ video }: { video: Video }) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await axios.get('/backend/videodata', {
     params: { id: context.query['id'] },
-
   });
   const video: Video = response.data;
-  console.log(video);
+
+  const response2 = await axios.get('/backend/suggestions', {
+    params: { amount: 10 },
+  });
+
+  let videos: Video[] = [];
+  response2.data.forEach((video: Video) => {
+    videos.push(video);
+  });
 
   return {
-    props: {video}, // will be passed to the page component as props
+    props: { video, videos }, // will be passed to the page component as props
   };
 };
