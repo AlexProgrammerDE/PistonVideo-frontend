@@ -1,10 +1,11 @@
 import SideBarComponent from '../components/sidebar/component';
 import VideoUserList from '../components/video/user-list';
-import { User } from '../components/models/video';
+import {User, Video} from '../components/models/video';
+import {GetServerSideProps} from "next";
+import axios from "axios";
 
 // noinspection JSUnusedGlobalSymbols
-export default function UserPage() {
-  const user: User = undefined;
+export default function UserPage({user}: {user: User}) {
   return (
     <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
       <SideBarComponent />
@@ -33,3 +34,12 @@ export default function UserPage() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const response = await axios.get('/backend/userdata', {params: {id: context.query['id']}});
+    const user: User = response.data;
+
+    return {
+        props: { user }, // will be passed to the page component as props
+    };
+};
