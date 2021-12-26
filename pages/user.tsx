@@ -1,11 +1,36 @@
 import SideBarComponent from '../components/sidebar/component';
 import VideoUserList from '../components/video/user-list';
-import { User } from '../components/models/video';
+import { User, Video } from '../components/models/video';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
+import VideoList from '../components/video/list';
+import { useEffect, useState } from 'react';
 
 // noinspection JSUnusedGlobalSymbols
 export default function UserPage({ user }: { user: User }) {
+  const [videos, setVideos] = useState<Video[]>();
+
+  useEffect(() => {
+    if (videos) {
+      return;
+    }
+
+    axios
+      .get('/backend/uservideos', {
+        params: { id: user.id },
+      })
+      .then((res) => {
+        let videos: Video[] = [];
+        res.data.forEach((video: Video) => {
+          videos.push(video);
+        });
+        setVideos(videos);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [videos]);
+
   return (
     <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
       <SideBarComponent />
@@ -28,7 +53,7 @@ export default function UserPage({ user }: { user: User }) {
               </div>
             </div>
           </div>
-          <VideoUserList videos={[]} />
+          {videos && <VideoList videos={videos} />}
         </div>
       </div>
     </div>

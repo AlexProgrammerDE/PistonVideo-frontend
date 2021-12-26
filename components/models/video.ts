@@ -13,4 +13,5 @@ export class User {
   id: string;
   avatarUrl: string;
   bioSmall: string;
+  bioBig: string;
 }

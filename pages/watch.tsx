@@ -4,20 +4,38 @@ import { Video } from '../components/models/video';
 import VideoList from '../components/video/list';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
+import { useEffect, useState } from 'react';
 
 // noinspection JSUnusedGlobalSymbols
-export default function Watch({
-  video,
-  videos,
-}: {
-  video: Video;
-  videos: Video[];
-}) {
+export default function Watch({ video }: { video: Video }) {
+  const [videos, setVideos] = useState<Video[]>();
+
+  useEffect(() => {
+    if (videos) {
+      return;
+    }
+
+    axios
+      .get('/backend/suggestions', {
+        params: { amount: 50 },
+      })
+      .then((res) => {
+        let videos: Video[] = [];
+        res.data.forEach((video: Video) => {
+          videos.push(video);
+        });
+        setVideos(videos);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [videos]);
+
   return (
     <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
       <SideBarComponent />
       {video && (
-        <div className="flex-grow m-5 w-full shadow-lg bg-gray-100">
+        <div className="flex-grow m-5 max-w-6xl shadow-lg bg-gray-100">
           <VideoPlayerComponent video={video} />
           <div className="px-6 py-3">
             <div className="font-bold text-2xl mb-2">{video.title}</div>
@@ -53,7 +71,7 @@ export default function Watch({
       )}
 
       <div className="flex-auto max-w-2xl">
-        <VideoList videos={videos} />
+        {videos && <VideoList videos={videos} />}
       </div>
     </div>
   );
@@ -65,16 +83,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   });
   const video: Video = response.data;
 
-  const response2 = await axios.get('/backend/suggestions', {
-    params: { amount: 10 },
-  });
-
-  let videos: Video[] = [];
-  response2.data.forEach((video: Video) => {
-    videos.push(video);
-  });
-
   return {
-    props: { video, videos }, // will be passed to the page component as props
+    props: { video }, // will be passed to the page component as props
   };
 };

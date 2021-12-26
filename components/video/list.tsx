@@ -11,7 +11,7 @@ export default function VideoList({ videos }: { videos: Video[] }) {
 
   useEffect(() => {
     if (videos.length > 0) {
-      const columnCount = width / boxWidth;
+      const columnCount = Math.floor(width / boxWidth);
 
       if (columnCount <= 0) {
         return;
