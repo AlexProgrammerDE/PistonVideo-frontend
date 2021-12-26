@@ -10,6 +10,7 @@ import { handleFlowError } from '../pkg/errors';
 // Import the SDK
 import ory from '../pkg/sdk';
 import AuthPage from '../components/auth/page';
+import Link from 'next/link';
 
 // Renders the registration page
 const Registration: NextPage = () => {
@@ -89,13 +90,14 @@ const Registration: NextPage = () => {
           <Flow onSubmit={onSubmit} flow={flow} />
         </MarginCard>
         <ActionCard>
-          <a
-            className="text-center text-sm"
-            data-testid="cta-link"
-            href="/login"
-          >
-            Sign in
-          </a>
+          <Link href="/login">
+            <a
+                className="text-center text-sm"
+                data-testid="cta-link"
+            >
+              Sign in
+            </a>
+          </Link>
         </ActionCard>
       </AuthPage>
     </>
