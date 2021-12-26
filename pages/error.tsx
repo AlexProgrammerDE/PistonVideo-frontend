@@ -48,11 +48,11 @@ const Login: NextPage = () => {
 
   return (
     <>
-      <MarginCard wide>
+      <MarginCard>
         <h2>An error occurred</h2>
         <CodeBox code={JSON.stringify(error, null, 2)} />
       </MarginCard>
-      <ActionCard wide>
+      <ActionCard>
         <Link href="/" passHref>
           <a className="text-center text-sm">Go back</a>
         </Link>

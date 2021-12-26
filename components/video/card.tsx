@@ -11,8 +11,8 @@ export default function VideoCard({ video }: { video: Video }) {
           <div className="flex justify-center md:justify-end -mt-12">
             <a href={'/user?id=' + video.uploader.id}>
               <img
-                width={"3.5rem"}
-                height={"3.5rem"}
+                width={'3.5rem'}
+                height={'3.5rem'}
                 className="w-14 h-14 object-cover rounded-full border-2 border-indigo-500"
                 src={video.uploader.avatarUrl}
                 alt={'Avatar of ' + video.uploader.username}
@@ -26,7 +26,10 @@ export default function VideoCard({ video }: { video: Video }) {
         </div>
         <div className="px-6 pt-1 pb-2">
           {video.tags.map((tag, index) => (
-            <span key={index} className="inline-block bg-gray-200 rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-1">
+            <span
+              key={index}
+              className="inline-block bg-gray-200 rounded-full px-2 py-1 text-xs font-semibold text-gray-700 mr-1 mb-1"
+            >
               #{tag}
             </span>
           ))}

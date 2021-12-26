@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react';
+import React from 'react';
 
 export interface StyledTextInputProps {
   help?: boolean;
@@ -47,11 +47,7 @@ const Checkbox = ({
           </label>
         )}
       </div>
-      {subtitle && (
-        <div className="checkbox-subtitle">
-          {subtitle}
-        </div>
-      )}
+      {subtitle && <div className="checkbox-subtitle">{subtitle}</div>}
     </div>
   );
 };

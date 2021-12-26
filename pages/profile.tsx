@@ -1,13 +1,12 @@
 // noinspection JSUnusedGlobalSymbols
-import { FormEventHandler, useState } from 'react';
-import crypto from 'crypto';
+import { FormEventHandler, useEffect, useState } from 'react';
 import Content from '../components/utils/Content';
 import Cloud from '../components/svg/cloud';
 import Send from '../components/svg/send';
-import axios from "axios";
-import {useRouter} from "next/router";
-
-const hash = crypto.createHash('sha256');
+import axios, { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
+import ory from '../pkg/sdk';
+import { Session } from '@ory/kratos-client';
 
 // noinspection JSUnusedGlobalSymbols
 export default function Profile() {
@@ -16,6 +15,34 @@ export default function Profile() {
   const [bioSmall, setBioSmall] = useState('');
   const [avatar, setAvatar] = useState<File>();
   const [uploading, setUploading] = useState(false);
+  // Contains the current session or undefined.
+  const [session, setSession] = useState<Session>();
+
+  // The error message or undefined.
+  const [error, setError] = useState<any>();
+
+  useEffect(() => {
+    // If the session or error have been loaded, do nothing.
+    if (session || error) {
+      return;
+    }
+
+    // Try to load the session.
+    ory
+      .toSession()
+      .then(({ data: session }) => {
+        // Session loaded successfully! Let's set it.
+        setSession(session);
+      })
+      .catch((err: AxiosError) => {
+        // An error occurred while loading the session or fetching
+        // the logout URL. Let's show that!
+        setError({
+          error: err.toString(),
+          data: err.response?.data,
+        });
+      });
+  }, [session, error]);
 
   const updateData: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -37,22 +64,22 @@ export default function Profile() {
       return;
     }
 
-    setUploading(true)
+    setUploading(true);
     try {
       axios
-          .post('/backend/user/updatedata', form, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          })
-          .then((resp) => {
-            router.push('/user?id=' + resp.data.id);
-          });
+        .post('/backend/user/updatedata', form, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((resp) => {
+          router.push('/user?id=' + resp.data.id);
+        });
     } catch (err) {
       // Handle Error Here
       console.error(err);
     }
-    setUploading(false)
+    setUploading(false);
   };
 
   return (

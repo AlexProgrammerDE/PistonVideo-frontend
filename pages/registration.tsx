@@ -91,10 +91,7 @@ const Registration: NextPage = () => {
         </MarginCard>
         <ActionCard>
           <Link href="/login">
-            <a
-                className="text-center text-sm"
-                data-testid="cta-link"
-            >
+            <a className="text-center text-sm" data-testid="cta-link">
               Sign in
             </a>
           </Link>

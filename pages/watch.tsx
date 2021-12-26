@@ -27,7 +27,10 @@ export default function Watch({
             />
             <div className="py-1 pt-1 pb-2">
               {video.tags.map((tag, index) => (
-                <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span
+                  key={index}
+                  className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                >
                   #{tag}
                 </span>
               ))}
@@ -35,7 +38,7 @@ export default function Watch({
             <div className="my-3 flex flex-row w-full bg-gray-300 items-center p-6 space-x-6 rounded-xl shadow-lg">
               <img
                 className="rounded-full h-10 w-10 items-center justify-center"
-                alt={"Avatar of " + video.uploader.username}
+                alt={'Avatar of ' + video.uploader.username}
                 src={video.uploader.avatarUrl}
               />
               <a
