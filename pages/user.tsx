@@ -1,10 +1,10 @@
 import SideBarComponent from '../components/sidebar/component';
-import VideoUserList from '../components/video/user-list';
 import { User, Video } from '../components/models/video';
 import { GetServerSideProps } from 'next';
 import axios from 'axios';
 import VideoList from '../components/video/list';
 import { useEffect, useState } from 'react';
+import UserBadge from '../components/UserBadge';
 
 // noinspection JSUnusedGlobalSymbols
 export default function UserPage({ user }: { user: User }) {
@@ -46,10 +46,17 @@ export default function UserPage({ user }: { user: User }) {
               rounded-t lg:rounded-t-none lg:rounded-l rounded-1xl text-center overflow-hidden"
               />
               <div>
-                <h2 className="text-2xl font-bold mb-2 text-gray-800">
-                  {user.username}
-                </h2>
-                <p className="text-gray-700">{user.bioSmall}</p>
+                <div className="flex flex-row gap-2">
+                  <h2 className="text-2xl font-bold text-gray-800">
+                    {user.username}
+                  </h2>
+                  <div className="flex flex-col justify-center">
+                    {user.badges.map((badge, index) => {
+                      return <UserBadge key={index} badge={badge} />;
+                    })}
+                  </div>
+                </div>
+                <p className="text-gray-700 mt-2">{user.bioSmall}</p>
               </div>
             </div>
           </div>

@@ -14,4 +14,5 @@ export class User {
   avatarUrl: string;
   bioSmall: string;
   bioBig: string;
+  badges: string[];
 }
