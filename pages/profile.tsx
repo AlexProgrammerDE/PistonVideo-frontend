@@ -4,92 +4,56 @@ import crypto from 'crypto';
 import Content from '../components/utils/Content';
 import Cloud from '../components/svg/cloud';
 import Send from '../components/svg/send';
+import axios from "axios";
+import {useRouter} from "next/router";
 
 const hash = crypto.createHash('sha256');
 
 // noinspection JSUnusedGlobalSymbols
 export default function Profile() {
+  const router = useRouter();
   const [bioBig, setBioBig] = useState('');
   const [bioSmall, setBioSmall] = useState('');
   const [avatar, setAvatar] = useState<File>();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [passwordOld, setPasswordOld] = useState('');
-  const [passwordNew, setPasswordNew] = useState('');
+  const [uploading, setUploading] = useState(false);
 
-  const updateData: FormEventHandler<HTMLFormElement> = async (event) => {
-    const bodyFormData = new FormData();
+  const updateData: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    const form = new FormData();
 
-    if (this.bio.avatar !== undefined) {
-      bodyFormData.append('avatar', this.bio.avatar, this.bio.avatar.name);
+    if (avatar !== undefined) {
+      form.append('avatar', avatar, avatar.name);
     }
-    if (this.bio.bioSmall !== undefined) {
-      bodyFormData.append('bioSmall', this.bio.bioSmall);
+    if (bioSmall !== undefined) {
+      form.append('bioSmall', bioSmall);
     }
-    if (this.bio.bioBig !== undefined) {
-      bodyFormData.append('bioBig', this.bio.bioBig);
+    if (bioBig !== undefined) {
+      form.append('bioBig', bioBig);
     }
 
     let i = 0;
-    bodyFormData.forEach(() => i++);
+    form.forEach(() => i++);
     if (i <= 0) {
       return;
     }
 
-    console.log(this.bio);
-
-    this.uploading = true;
+    setUploading(true)
     try {
-      const resp = await fetch('/api/user/updatedata', {
-        body: bodyFormData,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      await this.$router.push({
-        path: '/user',
-        query: {
-          id: (await resp.json()).id,
-        },
-      });
+      axios
+          .post('/backend/user/updatedata', form, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+          .then((resp) => {
+            router.push('/user?id=' + resp.data.id);
+          });
     } catch (err) {
       // Handle Error Here
       console.error(err);
     }
-    this.uploading = false;
+    setUploading(false)
   };
-
-  const updateInfo: FormEventHandler<HTMLFormElement> = async (event) => {
-    try {
-      let response = await fetch('/api/user/updateinfo', {
-        body: JSON.stringify({
-          username: username,
-          email: email,
-          oldPassword: passwordOld
-            ? hash.update(passwordOld).digest('hex')
-            : undefined,
-          newPassword: passwordOld
-            ? hash.update(this.info.passwordNew).digest('hex')
-            : undefined,
-        }),
-        method: 'POST',
-      }).then((response) => response.json());
-
-      if (response.data.success) {
-        await this.$router.push('/');
-      } else {
-        this.message = response.data.errorMessage;
-        this.invalid = true;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  let uploading = false;
-  let message2 = undefined;
-  let invalid2 = false;
 
   return (
     <Content>
