@@ -1,8 +1,21 @@
 import { Video } from '../models/video';
 
-export default function VideoCard({ video, noMarginLeft, noMarginRight }: { video: Video, noMarginLeft?: boolean, noMarginRight?: boolean }) {
+export default function VideoCard({
+  video,
+  noSideMargin,
+  noVerticalMargin,
+}: {
+  video: Video;
+  noSideMargin?: boolean;
+  noVerticalMargin?: boolean;
+}) {
   return (
-    <div className={"m-2 w-64 h-auto rounded overflow-hidden shadow-lg bg-gray-100" + (noMarginLeft ? " ml-0" : "") + (noMarginRight ? " mr-0" : "")}>
+    <div
+      className={
+        'w-64 h-auto rounded overflow-hidden shadow-lg bg-gray-100' +
+        (noSideMargin ? '' : ' ml-2 mr-2')
+      }
+    >
       <a href={'/watch?id=' + video.id}>
         <img alt="Thumbnail" src={video.thumbnailUrl} />
       </a>

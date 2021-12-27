@@ -3,12 +3,14 @@ import VideoPlayerComponent from '../components/video-player';
 import { Video } from '../components/models/video';
 import VideoList from '../components/video/list';
 import axios from 'axios';
-import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 // noinspection JSUnusedGlobalSymbols
-export default function Watch({ video }: { video: Video }) {
+export default function Watch() {
+  const router = useRouter();
   const [videos, setVideos] = useState<Video[]>();
+  const [video, setVideo] = useState<Video>();
 
   useEffect(() => {
     if (videos) {
@@ -31,11 +33,23 @@ export default function Watch({ video }: { video: Video }) {
       });
   }, [videos]);
 
+  useEffect(() => {
+    if (!router.query['id'] || video) {
+      return;
+    }
+
+    axios
+      .get('/backend/videodata', {
+        params: { id: router.query['id'] },
+      })
+      .then((response) => setVideo(response.data));
+  }, [video, router]);
+
   return (
     <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
       <SideBarComponent />
       {video && (
-        <div className="m-5 shadow-lg bg-gray-100">
+        <div className="flex-grow m-5 shadow-lg bg-gray-100">
           <VideoPlayerComponent video={video} />
           <div className="px-6 py-3">
             <div className="font-bold text-2xl mb-2">{video.title}</div>
@@ -70,20 +84,9 @@ export default function Watch({ video }: { video: Video }) {
         </div>
       )}
 
-      <div className="flex-auto max-w-2xl">
-        {videos && <VideoList videos={videos} />}
+      <div className="mt-5">
+        {videos && <VideoList videos={videos} forcedColumns={2} noVerticalMargin />}
       </div>
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await axios.get('/backend/videodata', {
-    params: { id: context.query['id'] },
-  });
-  const video: Video = response.data;
-
-  return {
-    props: { video }, // will be passed to the page component as props
-  };
-};
