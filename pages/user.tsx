@@ -55,8 +55,7 @@ export default function UserPage() {
                 <img
                   alt={'Avatar of ' + user.username}
                   src={user.avatarUrl}
-                  className="w-40 h-40 mr-5 flex-none bg-cover
-              rounded-t lg:rounded-t-none lg:rounded-l rounded-1xl text-center overflow-hidden"
+                  className="w-40 h-40 mr-5 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l rounded-1xl text-center overflow-hidden"
                 />
                 <div>
                   <div className="flex flex-row gap-2">
@@ -76,7 +75,7 @@ export default function UserPage() {
           </div>
         </div>
         <div className="flex-grow">
-          {videos && <VideoList videos={videos} noSideMargin />}
+          {videos && <VideoList videos={videos} noSideMargin noCenter />}
         </div>
       </div>
     </Layout>

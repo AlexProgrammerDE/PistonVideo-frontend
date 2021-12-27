@@ -20,7 +20,7 @@ export default function VideoCard({
         <img alt="Thumbnail" src={video.thumbnailUrl} />
       </a>
       <div className="px-6 py-3">
-        <div className="flex justify-center md:justify-end -mt-12">
+        <div className="flex justify-end -mt-12">
           <a href={'/user?id=' + video.uploader.id}>
             <img
               width={'3.5rem'}

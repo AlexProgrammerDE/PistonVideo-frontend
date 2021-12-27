@@ -1,5 +1,5 @@
 .sidebarTitle {
-  @apply flex flex-row items-center justify-center w-full my-1 p-2 h-14 border-gray-400 md:border-b text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-red-400 content-center;
+  @apply flex flex-row items-start justify-start md:items-center md:justify-center w-full my-1 p-2 h-14 border-gray-400 md:border-b text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-red-400;
 }
 
 .sidebarLink {

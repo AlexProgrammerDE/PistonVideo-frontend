@@ -8,10 +8,12 @@ export default function VideoList({
   forcedColumns = -1,
   noSideMargin,
   noVerticalMargin,
+  noCenter,
 }: {
   videos: Video[];
   forcedColumns?: number;
   noSideMargin?: boolean;
+  noCenter?: boolean;
   noVerticalMargin?: boolean;
 }) {
   const componentRef = useRef();
@@ -57,7 +59,7 @@ export default function VideoList({
       {columns?.map((column, index) => (
         <div key={index} className="flex flex-col gap-4 overflow-hidden w-full">
           {column.map((video, index) => (
-            <div className="flex flex-row justify-center">
+            <div className={"flex flex-row" + (noCenter ? "" : " justify-center")}>
               <VideoCard
                 key={index}
                 video={video}
