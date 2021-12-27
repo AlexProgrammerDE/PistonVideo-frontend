@@ -32,8 +32,6 @@ export const useContainerDimensions = (myRef) => {
 const fullConfig = resolveConfig(tailwindConfig);
 
 export const getBreakpointValue = (value: string): number => {
-  console.log(value)
-
   return fullConfig.theme.screens[value].slice(
     0,
     fullConfig.theme.screens[value].indexOf('px')
@@ -59,7 +57,8 @@ export const getCurrentBreakpoint = (): string => {
 export const isBiggerThan = (breakpoint: string): boolean => {
   if (getCurrentBreakpoint()) {
     return (
-      getBreakpointValue(getCurrentBreakpoint()) > getBreakpointValue(breakpoint)
+      getBreakpointValue(getCurrentBreakpoint()) >
+      getBreakpointValue(breakpoint)
     );
   } else {
     return true;
