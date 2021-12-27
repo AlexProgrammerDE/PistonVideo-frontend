@@ -45,7 +45,7 @@ export default function SideBarList() {
 
   return (
     <div className="overflow-y-auto overflow-x-hidden flex-grow">
-      <ul className="flex flex-col py-2 space-y-1">
+      <ul className="flex flex-col py-2 pt-0 md:pt-2 space-y-1">
         <SideBarHead title="Menu" />
         <li>
           <Link href="/">

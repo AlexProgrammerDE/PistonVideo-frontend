@@ -1,4 +1,3 @@
-import SideBarComponent from '../sidebar/component';
 import Layout from './Layout';
 
 export default function ContentBox({ children }) {

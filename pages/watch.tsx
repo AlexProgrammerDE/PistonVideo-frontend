@@ -2,15 +2,19 @@ import VideoPlayerComponent from '../components/video-player';
 import { Video } from '../components/models/video';
 import VideoList from '../components/video/list';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/utils/Layout';
+import { getCurrentBreakpoint, isBiggerThan, useContainerDimensions } from '../components/utils/helpers';
 
 // noinspection JSUnusedGlobalSymbols
 export default function Watch() {
   const router = useRouter();
   const [videos, setVideos] = useState<Video[]>();
   const [video, setVideo] = useState<Video>();
+  const componentRef = useRef();
+  const { width } = useContainerDimensions(componentRef);
+  const [small, setSmall] = useState(false);
 
   useEffect(() => {
     if (videos) {
@@ -43,7 +47,15 @@ export default function Watch() {
         params: { id: router.query['id'] },
       })
       .then((response) => setVideo(response.data));
-  }, [video, router]);
+  }, [video, router])
+
+  useEffect(() => {
+    const temp = isBiggerThan('sm');
+
+    if (temp !== small) {
+      setSmall(temp);
+    }
+  }, [width]);
 
   return (
     <Layout>
@@ -83,9 +95,13 @@ export default function Watch() {
         </div>
       )}
 
-      <div className="mt-5">
+      <div ref={componentRef} className="mt-5">
         {videos && (
-          <VideoList videos={videos} forcedColumns={2} noVerticalMargin />
+          <VideoList
+            videos={videos}
+            forcedColumns={small ? 1 : 2}
+            noVerticalMargin
+          />
         )}
       </div>
     </Layout>
