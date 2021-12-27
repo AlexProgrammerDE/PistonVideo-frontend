@@ -19,7 +19,7 @@
 }
 
 .settings-submit-button {
-  @apply p-2 border border-indigo-500 hover:bg-indigo-500 hover:text-white duration-100 ease-in-out w-2/12 text-indigo-500 flex flex-row justify-center items-center gap-1;
+  @apply p-2 border border-indigo-500 hover:bg-indigo-500 hover:text-white duration-100 ease-in-out text-indigo-500 flex flex-row justify-center items-center gap-1;
 }
 
 .settings-select {

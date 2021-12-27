@@ -46,7 +46,7 @@ export default function Upload() {
     <ContentBox>
       <form
         autoComplete="off"
-        className="relative p-5 space-y-3 w-4/12"
+        className="relative p-5 space-y-3 max-w-3xl"
         onSubmit={submitForm}
       >
         <h1 className="settings-title">Upload Video</h1>
