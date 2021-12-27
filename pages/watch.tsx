@@ -35,7 +35,7 @@ export default function Watch({ video }: { video: Video }) {
     <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
       <SideBarComponent />
       {video && (
-        <div className="flex-grow m-5 max-w-6xl shadow-lg bg-gray-100">
+        <div className="m-5 shadow-lg bg-gray-100">
           <VideoPlayerComponent video={video} />
           <div className="px-6 py-3">
             <div className="font-bold text-2xl mb-2">{video.title}</div>

@@ -35,32 +35,32 @@ export default function UserPage({ user }: { user: User }) {
     <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
       <SideBarComponent />
 
-      <div className="m-5 w-full">
-        <div className="flex flex-col">
-          <div className="bg-blue-100 shadow-lg rounded-2xl">
-            <div className="flex flex-row items-center mt-40 mb-10 mx-10 bg-gray-100 rounded-1xl shadow-lg w-42 h-40">
-              <img
-                alt={'Avatar of ' + user.username}
-                src={user.avatarUrl}
-                className="w-40 h-40 mr-5 flex-none bg-cover
+      <div className="flex flex-col m-5 mb-0 w-full">
+        <div className="bg-blue-100 shadow-lg rounded-2xl">
+          <div className="flex flex-row items-center mt-40 mb-10 mx-10 bg-gray-100 rounded-1xl shadow-lg w-42 h-40">
+            <img
+              alt={'Avatar of ' + user.username}
+              src={user.avatarUrl}
+              className="w-40 h-40 mr-5 flex-none bg-cover
               rounded-t lg:rounded-t-none lg:rounded-l rounded-1xl text-center overflow-hidden"
-              />
-              <div>
-                <div className="flex flex-row gap-2">
-                  <h2 className="text-2xl font-bold text-gray-800">
-                    {user.username}
-                  </h2>
-                  <div className="flex flex-col justify-center">
-                    {user.badges.map((badge, index) => {
-                      return <UserBadge key={index} badge={badge} />;
-                    })}
-                  </div>
+            />
+            <div>
+              <div className="flex flex-row gap-2">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  {user.username}
+                </h2>
+                <div className="flex flex-col justify-center">
+                  {user.badges.map((badge, index) => {
+                    return <UserBadge key={index} badge={badge} />;
+                  })}
                 </div>
-                <p className="text-gray-700 mt-2">{user.bioSmall}</p>
               </div>
+              <p className="text-gray-700 mt-2">{user.bioSmall}</p>
             </div>
           </div>
-          {videos && <VideoList videos={videos} />}
+        </div>
+        <div className="flex-grow">
+          {videos && <VideoList videos={videos} noSideMargin />}
         </div>
       </div>
     </div>
