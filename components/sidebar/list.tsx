@@ -59,7 +59,7 @@ export default function SideBarList() {
         </li>
         {hasSession && (
           <>
-            <SideBarHead title="Content" />
+            <SideBarHead title="ContentBox" />
             <li>
               <Link href="/upload">
                 <a className={styles.sidebarLink}>

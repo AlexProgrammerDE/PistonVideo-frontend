@@ -1,4 +1,4 @@
-import Content from '../components/utils/Content';
+import ContentBox from '../components/utils/ContentBox';
 import Cloud from '../components/svg/cloud';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
@@ -32,18 +32,18 @@ export default function Upload() {
             },
           })
           .then((resp) => {
+            setUploading(false);
             router.push('/watch?id=' + resp.data.id);
           });
       } catch (err) {
         // Handle Error Here
         console.error(err);
       }
-      setUploading(false);
     }
   };
 
   return (
-    <Content>
+    <ContentBox>
       <form
         autoComplete="off"
         className="relative p-5 space-y-3 w-4/12"
@@ -148,6 +148,6 @@ export default function Upload() {
           />
         )}
       </form>
-    </Content>
+    </ContentBox>
   );
 }

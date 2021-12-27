@@ -1,10 +1,10 @@
-import SideBarComponent from '../components/sidebar/component';
 import VideoPlayerComponent from '../components/video-player';
 import { Video } from '../components/models/video';
 import VideoList from '../components/video/list';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Layout from '../components/utils/Layout';
 
 // noinspection JSUnusedGlobalSymbols
 export default function Watch() {
@@ -46,8 +46,7 @@ export default function Watch() {
   }, [video, router]);
 
   return (
-    <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
-      <SideBarComponent />
+    <Layout>
       {video && (
         <div className="flex-grow m-5 shadow-lg bg-gray-100">
           <VideoPlayerComponent video={video} />
@@ -85,8 +84,10 @@ export default function Watch() {
       )}
 
       <div className="mt-5">
-        {videos && <VideoList videos={videos} forcedColumns={2} noVerticalMargin />}
+        {videos && (
+          <VideoList videos={videos} forcedColumns={2} noVerticalMargin />
+        )}
       </div>
-    </div>
+    </Layout>
   );
 }

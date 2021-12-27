@@ -10,7 +10,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { Flow, Messages, Methods } from '../pkg';
 import { handleFlowError } from '../pkg/errors';
 import ory from '../pkg/sdk';
-import Content from '../components/utils/Content';
+import ContentBox from '../components/utils/ContentBox';
 
 interface Props {
   flow?: SelfServiceSettingsFlow;
@@ -98,7 +98,7 @@ const Settings: NextPage = () => {
       );
 
   return (
-    <Content>
+    <ContentBox>
       <div className="relative p-5 space-y-3">
         <h1 className="settings-title">
           Profile Management and Security Settings
@@ -205,7 +205,7 @@ const Settings: NextPage = () => {
           />
         </SettingsCard>
       </div>
-    </Content>
+    </ContentBox>
   );
 };
 

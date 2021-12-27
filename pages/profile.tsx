@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 import { FormEventHandler, useEffect, useState } from 'react';
-import Content from '../components/utils/Content';
+import ContentBox from '../components/utils/ContentBox';
 import Cloud from '../components/svg/cloud';
 import Send from '../components/svg/send';
 import axios, { AxiosError } from 'axios';
@@ -83,7 +83,7 @@ export default function Profile() {
   };
 
   return (
-    <Content>
+    <ContentBox>
       <form className="m-5 mb-0 w-4/12" onSubmit={updateData}>
         <h1 className="settings-title">Profile</h1>
         <div className="flex flex-col gap-3 px-0 py-2">
@@ -168,6 +168,6 @@ export default function Profile() {
           </div>
         </div>
       </form>
-    </Content>
+    </ContentBox>
   );
 }

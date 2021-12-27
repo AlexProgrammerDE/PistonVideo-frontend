@@ -1,10 +1,10 @@
-import SideBarComponent from '../components/sidebar/component';
 import { User, Video } from '../components/models/video';
 import axios from 'axios';
 import VideoList from '../components/video/list';
 import { useEffect, useState } from 'react';
 import UserBadge from '../components/UserBadge';
 import { useRouter } from 'next/router';
+import Layout from '../components/utils/Layout';
 
 // noinspection JSUnusedGlobalSymbols
 export default function UserPage() {
@@ -46,9 +46,7 @@ export default function UserPage() {
   }, [videos, user]);
 
   return (
-    <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
-      <SideBarComponent />
-
+    <Layout>
       <div className="flex flex-col m-5 mb-0 w-full">
         <div className="bg-blue-100 shadow-lg rounded-2xl">
           <div className="flex flex-row items-center mt-40 mb-10 mx-10 bg-gray-100 rounded-1xl shadow-lg w-42 h-40">
@@ -81,6 +79,6 @@ export default function UserPage() {
           {videos && <VideoList videos={videos} noSideMargin />}
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }

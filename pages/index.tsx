@@ -1,8 +1,8 @@
-import SideBarComponent from '../components/sidebar/component';
 import VideoList from '../components/video/list';
 import axios from 'axios';
 import { Video } from '../components/models/video';
 import { useEffect, useState } from 'react';
+import Layout from '../components/utils/Layout';
 
 // noinspection JSUnusedGlobalSymbols
 export default function Home() {
@@ -29,10 +29,5 @@ export default function Home() {
       });
   }, [videos]);
 
-  return (
-    <div className="flex flex-row min-h-screen bg-gray-50 text-gray-800">
-      <SideBarComponent />
-      {videos && <VideoList videos={videos} />}
-    </div>
-  );
+  return <Layout>{videos && <VideoList videos={videos} />}</Layout>;
 }
