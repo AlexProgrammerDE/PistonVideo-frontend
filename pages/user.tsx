@@ -47,17 +47,17 @@ export default function UserPage() {
 
   return (
     <Layout>
-      <div className="flex flex-col m-5 mb-0 w-full">
-        <div className="bg-blue-100 shadow-lg rounded-2xl">
-          <div className="flex flex-row items-center mt-40 mb-10 mx-10 bg-gray-100 rounded-1xl shadow-lg w-42 h-40">
+      <div className="flex flex-col m-2 md:m-5 mb-0 w-full">
+        <div className="bg-blue-100 shadow-lg rounded-2xl flex justify-center">
+          <div className="inline-flex md:flex flex-col md:flex-row float-none items-center mt-14 md:mt-40 mb-5 mb:mb-10 md:mx-10 bg-gray-100 shadow-lg md:block md:w-full md:h-40 rounded-2xl">
             {user && (
               <>
                 <img
                   alt={'Avatar of ' + user.username}
                   src={user.avatarUrl}
-                  className="w-40 h-40 mr-5 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l rounded-1xl text-center overflow-hidden"
+                  className="-mt-8 md:-mt-0 w-20 h-20 md:w-40 md:h-40 object-cover rounded-full border-2 border-indigo-500 md:border-none md:rounded-none md:mr-5 flex-none bg-cover md:rounded-l-2xl rounded-2xl text-center overflow-hidden"
                 />
-                <div>
+                <div className="p-4 pt-0 md:p-0">
                   <div className="flex flex-row gap-2">
                     <h2 className="text-2xl font-bold text-gray-800">
                       {user.username}

@@ -3,7 +3,6 @@ import { Video } from '../models/video';
 export default function VideoCard({
   video,
   noSideMargin,
-  noVerticalMargin,
 }: {
   video: Video;
   noSideMargin?: boolean;
@@ -21,7 +20,10 @@ export default function VideoCard({
       </a>
       <div className="px-6 py-3">
         <div className="flex justify-end -mt-12">
-          <a href={'/user?id=' + video.uploader.id} title={'User page of ' + video.uploader.username}>
+          <a
+            href={'/user?id=' + video.uploader.id}
+            title={'User page of ' + video.uploader.username}
+          >
             <img
               width={'3.5rem'}
               height={'3.5rem'}
