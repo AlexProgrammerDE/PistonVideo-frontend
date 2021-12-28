@@ -10,9 +10,7 @@ export default function SideBarTop() {
         <Image width={32} height={32} src={iconPic} alt="PistonVideo Logo" />
       </div>
       <Link href="/">
-        <a>
-          <div className="ml-1">PistonVideo</div>
-        </a>
+        <a className="ml-1">PistonVideo</a>
       </Link>
     </div>
   );

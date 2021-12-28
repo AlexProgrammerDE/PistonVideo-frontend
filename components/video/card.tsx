@@ -16,12 +16,12 @@ export default function VideoCard({
         (noSideMargin ? '' : ' ml-2 mr-2')
       }
     >
-      <a href={'/watch?id=' + video.id}>
-        <img alt="Thumbnail" src={video.thumbnailUrl} />
+      <a href={'/watch?id=' + video.id} title={'Watch ' + video.title}>
+        <img alt="Thumbnail of the video" src={video.thumbnailUrl} />
       </a>
       <div className="px-6 py-3">
         <div className="flex justify-end -mt-12">
-          <a href={'/user?id=' + video.uploader.id}>
+          <a href={'/user?id=' + video.uploader.id} title={'User page of ' + video.uploader.username}>
             <img
               width={'3.5rem'}
               height={'3.5rem'}

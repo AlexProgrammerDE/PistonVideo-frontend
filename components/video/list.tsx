@@ -59,9 +59,8 @@ export default function VideoList({
       {columns?.map((column, index) => (
         <div key={index} className="flex flex-col gap-4 overflow-hidden w-full">
           {column.map((video, index) => (
-            <div className={"flex flex-row" + (noCenter ? "" : " justify-center")}>
+            <div key={index} className={"flex flex-row" + (noCenter ? "" : " justify-center")}>
               <VideoCard
-                key={index}
                 video={video}
                 noSideMargin={noSideMargin}
                 noVerticalMargin={noVerticalMargin}
