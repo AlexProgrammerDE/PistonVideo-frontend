@@ -9,6 +9,8 @@ import {
   isBiggerThan,
   useContainerDimensions,
 } from '../components/utils/helpers';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 // noinspection JSUnusedGlobalSymbols
 export default function Watch() {
@@ -74,10 +76,9 @@ export default function Watch() {
                 </p>
               </div>
             </div>
-            <div
-              className="text-gray-700 text-lg py-1"
-              dangerouslySetInnerHTML={{ __html: video.description }}
-            />
+            <ReactMarkdown className="text-gray-700 text-lg py-1" remarkPlugins={[remarkGfm]}>
+              {video.description}
+            </ReactMarkdown>
             <div className="py-1 pt-1 pb-2">
               {video.tags.map((tag, index) => (
                 <span

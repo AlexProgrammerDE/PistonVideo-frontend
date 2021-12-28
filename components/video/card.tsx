@@ -1,4 +1,6 @@
 import { Video } from '../models/video';
+import remarkGfm from 'remark-gfm';
+import ReactMarkdown from 'react-markdown';
 
 export default function VideoCard({
   video,
@@ -36,7 +38,9 @@ export default function VideoCard({
         <a href={'/watch?id=' + video.id}>
           <div className="font-bold text-base mb-2">{video.title}</div>
         </a>
-        <div dangerouslySetInnerHTML={{ __html: video.description }} />
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {video.description}
+        </ReactMarkdown>
       </div>
       <div className="px-6 pt-1 pb-2">
         {video.tags.map((tag, index) => (

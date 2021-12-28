@@ -3,6 +3,7 @@ import Cloud from '../components/svg/cloud';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Alert from '../components/utils/Alert';
 
 // noinspection JSUnusedGlobalSymbols
 export default function Upload() {
@@ -12,6 +13,7 @@ export default function Upload() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,21 +26,20 @@ export default function Upload() {
       form.append('thumbnail', thumbnail, thumbnail.name);
 
       setUploading(true);
-      try {
-        axios
-          .post('/backend/restricted/video/create', form, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          })
-          .then((resp) => {
-            setUploading(false);
-            router.push('/watch?id=' + resp.data.id);
-          });
-      } catch (err) {
-        // Handle Error Here
-        console.error(err);
-      }
+      axios
+        .post('/backend/restricted/video/create', form, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((resp) => {
+          setUploading(false);
+          router.push('/watch?id=' + resp.data.id);
+        })
+        .catch((err) => {
+          setUploading(false);
+          setErrorMessage(err.response.data.message);
+        });
     }
   };
 
@@ -49,6 +50,12 @@ export default function Upload() {
         className="relative p-5 space-y-3 max-w-3xl"
         onSubmit={submitForm}
       >
+        {errorMessage && (
+          <Alert
+            text={errorMessage}
+            onClose={() => setErrorMessage(undefined)}
+          />
+        )}
         <h1 className="settings-title">Upload Video</h1>
         <label className="settings-component-title">
           Select your video here:
