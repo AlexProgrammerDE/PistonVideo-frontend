@@ -47,6 +47,9 @@ export default function VideoPlayerComponent({ video }: { video: Video }) {
         poster: video.thumbnailUrl,
         tracks: [],
       }}
+      options={{
+        ratio: '16:9',
+      }}
     />
   );
 }

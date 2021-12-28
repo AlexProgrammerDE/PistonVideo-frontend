@@ -6,6 +6,7 @@ export class Video {
   thumbnailUrl: string;
   tags: string[];
   uploader: User;
+  views: number;
 }
 
 export class User {

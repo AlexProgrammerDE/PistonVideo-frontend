@@ -66,7 +66,14 @@ export default function Watch() {
         <div className="flex-grow m-5 shadow-lg bg-gray-100">
           <VideoPlayerComponent video={video} />
           <div className="px-6 py-3">
-            <div className="font-bold text-2xl mb-2">{video.title}</div>
+            <div className="flex flex-row flex-start mb-2">
+              <h1 className="font-bold text-2xl mr-2">{video.title}</h1>
+              <div className="flex flex-col justify-center">
+                <p className="bg-gray-400 text-gray-200 text-center text-sm font-semibold px-1 rounded-full shadow-sm">
+                  {video.views}
+                </p>
+              </div>
+            </div>
             <div
               className="text-gray-700 text-lg py-1"
               dangerouslySetInnerHTML={{ __html: video.description }}
